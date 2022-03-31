@@ -10,14 +10,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/helloworld")
-public class HelloWorld {
+public class HelloWorldService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> helloWold() {
-        Map<String, Serializable> map = new HashMap<>();
-        map.put("message", "Hello World!");
-        return map;
+    public Map<String, Serializable> helloWorld() {
+        Map<String, Serializable> data = new HashMap<>();
+        data.put("message", "Hello World!");
+        return data;
     }
 
 }
