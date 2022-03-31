@@ -26,7 +26,8 @@
   "extensions": [
     "vscjava.vscode-java-pack",
     "eamodio.gitlens",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.

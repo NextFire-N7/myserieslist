@@ -12,7 +12,8 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">{hello}</h1>
+      <h1 className="underline">GET /api/helloworld:</h1>
+      <p>{hello}</p>
     </div>
   );
 };
