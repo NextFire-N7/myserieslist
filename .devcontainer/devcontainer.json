@@ -18,16 +18,14 @@
 
   // Set *default* container specific settings.json values on container create.
   "settings": {
-    "java.jdt.ls.java.home": "/docker-java-home",
-    "gitlens.plusFeatures.enabled": false
+    "java.jdt.ls.java.home": "/docker-java-home"
   },
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
     "vscjava.vscode-java-pack",
-    "eamodio.gitlens",
-    "bradlc.vscode-tailwindcss",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
