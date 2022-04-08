@@ -1,6 +1,6 @@
 # myserieslist
 
-## Environment etup
+## Environment setup
 
 You can either setup a local development environment by installing the required tools or use a Dev Container.
 
@@ -8,11 +8,11 @@ You can either setup a local development environment by installing the required 
 
 ### Backend
 
+> JEE/EJB + JAX-RS
+
 **Folder:** `backend/`
 
 **Required:** [Maven](https://maven.apache.org) (Java project manager)
-
-> JEE/EJB + JAX-RS
 
 To launch the [WildFly](https://www.wildfly.org) server: `mvn wildfly:run`\
 or in VS Code:
@@ -23,11 +23,11 @@ or in VS Code: _Tasks: Run Build Task_ (`Ctrl+Shift+B`)
 
 ### Frontend
 
+> Next.js (React) + TailwindCSS + TypeScript
+
 **Folder:** `frontend/`
 
 **Required:** [Node.js](https://nodejs.dev)
-
-> Next.js (React) + TailwindCSS
 
 Install the Node.js dependancies: `npm install`
 
@@ -46,4 +46,4 @@ The provided [devcontainer.json](/.devcontainer/devcontainer.json) automatically
 
 - [Visual Studio Code](https://code.visualstudio.com/docs)
 - Backend: [Maven](https://maven.apache.org), [WildFly](https://www.wildfly.org), [WildFly Maven Plugin](https://docs.jboss.org/wildfly/plugins/maven/latest/)
-- Frontend: [React](https://reactjs.org), [Next.js](https://nextjs.org), [TailwindCSS](https://tailwindcss.com)
+- Frontend: [React](https://reactjs.org), [Next.js](https://nextjs.org), [TailwindCSS](https://tailwindcss.com), [TypeScript](https://www.typescriptlang.org)
