@@ -1,0 +1,61 @@
+\documentclass[headings=standardclasses,parskip=half]{scrartcl}
+
+\usepackage[french]{babel}
+\usepackage[margin=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{ {images/} }
+
+\titlehead{
+    \begin{center}
+        \includegraphics[height=2cm]{logo-toulouse-inp-n7.png}
+    \end{center}
+}
+\subject{Projet Applications Web}
+\title{MySeriesList}
+\subtitle{Présentation}
+\author{Adrien CHEVALLEREAU \and Dino GURNARI \and Valentin LEBRUN \and Nam VU}
+\date{\today}
+\publishers{ENSEEIHT – 2SN-A}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Résumé}
+
+Réseau social de suivi de médias audiovisuels.
+
+Exemple : \url{https://anilist.co/home}
+
+\section*{Fonctionnalités}
+
+\begin{itemize}
+    \item Possibilité d’ajouter des séries non référencées
+    \item Marquer les séries comme vue
+    \item Ajout de commentaire à chaque épisode
+    \item Connexion via id/mdp ou ldap
+    \item Recommandation
+    \item Notation des série
+    \item Notif ??
+\end{itemize}
+
+\section*{Stack technique}
+
+Développement sous VSCode, versionnage git sur GitHub.
+
+\subsection*{Backend}
+
+EJB + JAX-RS (REST Services)
+
+Base de donnée ??
+
+\subsection*{Frontend}
+
+\href{https://nextjs.org}{Next.js} (React)
+
+\href{https://tailwindcss.com}{TailwindCSS} pour le style
+
+\end{document}
