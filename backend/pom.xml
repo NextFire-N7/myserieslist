@@ -18,12 +18,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>moe.yuru.projetappliweb</groupId>
-    <artifactId>projetappliweb</artifactId>
+    <groupId>moe.yuru.myserieslist</groupId>
+    <artifactId>myserieslist</artifactId>
     <version>1.0-SNAPSHOT</version>
     
     <packaging>war</packaging>
-    <name>projetappliweb</name>
+    <name>myserieslist</name>
     <description>Insert description for your project here.</description>
 
     <properties>

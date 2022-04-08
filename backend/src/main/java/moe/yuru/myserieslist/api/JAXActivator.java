@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package moe.yuru.projetappliweb.api;
+package moe.yuru.myserieslist.api;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

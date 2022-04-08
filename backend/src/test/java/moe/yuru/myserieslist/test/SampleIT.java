@@ -1,4 +1,4 @@
-package moe.yuru.projetappliweb.test;
+package moe.yuru.myserieslist.test;
 
 import java.io.File;
 
@@ -27,14 +27,14 @@ public class SampleIT {
     @Deployment
     public static Archive<?> getEarArchive() {
         // Import the web archive that was created by Maven:
-        File f = new File("./target/projetappliweb.war");
+        File f = new File("./target/myserieslist.war");
         if (f.exists() == false) {
             throw new RuntimeException("File " + f.getAbsolutePath() + " does not exist.");
         }
-        WebArchive war = ShrinkWrap.create(ZipImporter.class, "projetappliweb.war").importFrom(f).as(WebArchive.class);
+        WebArchive war = ShrinkWrap.create(ZipImporter.class, "myserieslist.war").importFrom(f).as(WebArchive.class);
         
         // Add the package containing the test classes:
-        war.addPackage("moe.yuru.projetappliweb.test");
+        war.addPackage("moe.yuru.myserieslist.test");
 
         // Export the WAR file to examine it in case of problems:
         // war.as(ZipExporter.class).exportTo(new File("c:\\temp\\test.war"), true);

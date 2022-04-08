@@ -1,4 +1,4 @@
-package moe.yuru.projetappliweb.api;
+package moe.yuru.myserieslist.api;
 
 import java.io.Serializable;
 import java.util.HashMap;
