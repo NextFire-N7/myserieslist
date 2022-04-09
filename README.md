@@ -12,7 +12,7 @@ You can either setup a local development environment by installing the required 
 
 **Folder:** `backend/`
 
-**Required:** [Maven](https://maven.apache.org) (Java project manager)
+**Required:** [JavaSE-11](https://adoptium.net) and [Maven](https://maven.apache.org) (Java project manager)
 
 To launch the [WildFly](https://www.wildfly.org) server: `mvn wildfly:run`\
 or in VS Code:
