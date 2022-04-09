@@ -8,11 +8,11 @@ You can either setup a local development environment by installing the required 
 
 ### Backend
 
-> JEE/EJB + JAX-RS
+> JEE/EJB + JAX-RS + MySQL
 
 **Folder:** `backend/`
 
-**Required:** [JavaSE-11](https://adoptium.net) and [Maven](https://maven.apache.org) (Java project manager)
+**Required:** [JavaSE-11](https://adoptium.net), [Maven](https://maven.apache.org) (Java project manager) and [MySQL](https://www.mysql.com) (see [Database configuration](#database-configuration))
 
 To launch the [WildFly](https://www.wildfly.org) server: `mvn wildfly:run`\
 or in VS Code:
@@ -41,6 +41,43 @@ The dev server features [_Fast Refresh_](https://nextjs.org/docs/basic-features/
 **Required:** [Code](https://code.visualstudio.com) and [Developing inside a Container – Getting started](https://code.visualstudio.com/docs/remote/containers#_getting-started)
 
 The provided [devcontainer.json](/.devcontainer/devcontainer.json) automatically setup an isolated environment to develop with VS Code.
+
+### Database configuration
+
+Launch a MySQL instance with Docker:
+
+```shell
+$ docker run -d --name msl-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password mysql
+```
+
+Create the database:
+
+```shell
+$ docker exec -it msl-mysql mysql -p
+Enter password: password
+mysql> CREATE DATABASE myserieslist;
+```
+
+Edit `backend/target/wildfly-26.0.1.Final/standalone/configuration/standalone.xml` and add the following datasource configuration under `<datasources>...</datasources>`:
+
+```xml
+<datasource jndi-name="java:/MySqlDS" pool-name="MySqlDS">
+    <connection-url>jdbc:mysql://localhost:3306/myserieslist</connection-url>
+    <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
+    <driver>myserieslist.war_com.mysql.cj.jdbc.Driver_8_0</driver>
+    <security>
+        <user-name>root</user-name>
+        <password>password</password>
+    </security>
+    <validation>
+        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
+        <validate-on-match>true</validate-on-match>
+        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+    </validation>
+</datasource>
+```
+
+Relaunch the WildFly server.
 
 ## Resources
 
