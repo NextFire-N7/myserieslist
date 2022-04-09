@@ -1,0 +1,29 @@
+classDiagram
+    class Media {
+    }
+    class AiringSchedule {
+    }
+    class Character {
+    }
+    class Staff {
+    }
+    class MediaFranchise {
+    }
+    class MediaList {
+    }
+    class User {
+    }
+    class Review {
+    }
+    User "1" *-- "*" MediaList : lists
+    User "*" <-- "*" User : userFollows
+    User "*" <-- "*" Media : mediaFollows
+    MediaList "*" o-- "*" Media : medias
+    MediaList "1" *-- "*" Review : reviews
+    Media "1" *-- "*" AiringSchedule : schedules
+    Media "*" o-- "*" Character : characters
+    Media "*" <-- "*" Staff : staff
+    Media "*" <-- "*" Media : recommendations
+    MediaFranchise "1" o-- "*" Media : medias
+    Character "*" <-- "*" Staff : staff
+    Review "*" o-- "1" Media : media
