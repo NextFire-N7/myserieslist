@@ -29,7 +29,7 @@ or in VS Code: _Tasks: Run Build Task_ (`Ctrl+Shift+B`)
 
 **Required:** [Node.js](https://nodejs.dev)
 
-Install the Node.js dependancies: `npm install`
+Install the Node.js dependancies: `npm ci`
 
 To launch the [Next.js](https://nextjs.org) dev server: `npm run dev`\
 or in VS Code (with [debugging](https://code.visualstudio.com/docs/editor/debugging)): _Start Debugging_ (`F5`)
