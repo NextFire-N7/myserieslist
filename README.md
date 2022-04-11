@@ -58,7 +58,7 @@ Enter password: password
 mysql> CREATE DATABASE myserieslist;
 ```
 
-Edit `backend/target/wildfly-26.0.1.Final/standalone/configuration/standalone.xml` and add the following datasource configuration under `<datasources>...</datasources>`:
+Edit `backend/target/wildfly-26.0.1.Final/standalone/configuration/standalone.xml` and add the following datasource configuration inside `<datasources>...</datasources>`:
 
 ```xml
 <datasource jndi-name="java:/MySqlDS" pool-name="MySqlDS">
