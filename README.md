@@ -36,12 +36,6 @@ or in VS Code (with [debugging](https://code.visualstudio.com/docs/editor/debugg
 
 The dev server features [_Fast Refresh_](https://nextjs.org/docs/basic-features/fast-refresh) (instantaneous feedback on edits).
 
-### Dev Container
-
-**Required:** [Code](https://code.visualstudio.com) and [Developing inside a Container – Getting started](https://code.visualstudio.com/docs/remote/containers#_getting-started)
-
-The provided [devcontainer.json](/.devcontainer/devcontainer.json) automatically setup an isolated environment to develop with VS Code.
-
 ### Database configuration
 
 Launch a MySQL instance with Docker:
@@ -78,6 +72,18 @@ Edit `backend/target/wildfly-26.0.1.Final/standalone/configuration/standalone.xm
 ```
 
 Relaunch the WildFly server.
+
+### Dev Container
+
+**Required:** [Code](https://code.visualstudio.com) and [Developing inside a Container – Getting started](https://code.visualstudio.com/docs/remote/containers#_getting-started)
+
+The provided [devcontainer.json](/.devcontainer/devcontainer.json) automatically setup an isolated environment to develop with VS Code.
+
+**Database configuration:**
+
+The Dev Container already setups a MySQL instance. 
+
+The rest of the configuration is the same, except you should use `mysql -h db -u root -p` to connect to the MySQL CLI and replace the `connection-url` of the wildfly datasource config above with `jdbc:mysql://db:3306/myserieslist`. 
 
 ## Resources
 
