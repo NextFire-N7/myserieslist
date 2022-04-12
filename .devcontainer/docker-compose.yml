@@ -3,8 +3,8 @@ version: "3.8"
 services:
   app:
     build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
+      context: .
+      dockerfile: Dockerfile
       args:
         # Update the VARIANT arg to pick a Java version: 11, 17
         # Append -bullseye or -buster to pin to an OS version.

@@ -22,6 +22,16 @@
       },
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "frontend: run",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "isBackground": true,
+      "problemMatcher": ["$tsc-watch"]
     }
   ]
 }
