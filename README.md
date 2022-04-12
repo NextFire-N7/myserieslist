@@ -81,9 +81,9 @@ The provided [devcontainer.json](/.devcontainer/devcontainer.json) automatically
 
 **Database configuration:**
 
-The Dev Container already setups a MySQL instance. 
+The Dev Container already setups a MySQL instance (at db:3306).
 
-The rest of the configuration is the same, except you should use `mysql -h db -u root -p` to connect to the MySQL CLI and replace the `connection-url` of the wildfly datasource config above with `jdbc:mysql://db:3306/myserieslist`. 
+The rest of the configuration is the same, except you should use `mysql -h db -u root -p` to connect to the MySQL CLI and replace the `connection-url` of the wildfly datasource config above with `jdbc:mysql://db:3306/myserieslist`.
 
 ## Resources
 
