@@ -1,7 +1,7 @@
 package moe.yuru.myserieslist.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -11,8 +11,12 @@ public class Serie implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String nom;
-    private ArrayList<Commentaire> commentaires;
-    private ArrayList<Saison> saisons;
+    
+    @OneToMany (mappedBy = "serieattached", fetch = FetchType.EAGER)
+    private Collection<Commentaire> commentaires = new ArrayList<>();
+
+    @OneToMany (mappedBy = "sattached", fetch = FetchType.EAGER)
+    private Collection<Saison> saisons = new ArrayList<>();
     //ajouter le truc pour stocker la photo
     
 
@@ -24,5 +28,17 @@ public class Serie implements Serializable {
         this.nom = nom;
     }
 
+    public Collection<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+    public void addCommentaires(Commentaire comm) {
+        commentaires.add(comm);
+    }
+    public Collection<Saison> getSaisons() {
+        return saisons;
+    }
+    public void addCommentaires(Saison saison) {
+        saisons.add(saison);
+    }
     
 }

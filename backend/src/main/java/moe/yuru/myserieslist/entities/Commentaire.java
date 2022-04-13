@@ -1,9 +1,11 @@
 package moe.yuru.myserieslist.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
-public class Commentaire {
+public class Commentaire implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -11,7 +13,16 @@ public class Commentaire {
     private int note;
     private String message;
     private String auteurs;
+
+    @ManyToOne
+    Film filmattached;
   
+    @ManyToOne
+    Serie serieattached;
+
+    @ManyToOne
+    Saison saisonattached;
+
     public String getTitre() {
         return titre;
     }

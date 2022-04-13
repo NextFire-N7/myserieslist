@@ -1,9 +1,10 @@
 package moe.yuru.myserieslist.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.persistence.*;
+
 
 @Entity
 public class Film implements Serializable {
@@ -11,16 +12,19 @@ public class Film implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String nom;
-    private ArrayList<Commentaire> commentaires = new ArrayList<>();
+    
+    @OneToMany (mappedBy = "filmattached", fetch = FetchType.EAGER)
+    private Collection<Commentaire> commentaires = new ArrayList<Commentaire>();
       //ajouter le truc pour stocker la photo
     
-
+    @ManyToOne
+    Saison episodeattached;
 
 
     public String getNom() {
         return nom;
     }
-    public ArrayList<Commentaire> getCommentaires() {
+    public Collection<Commentaire> getCommentaires() {
         return commentaires;
     }
     public void addCommentaire(Commentaire commentaire) {

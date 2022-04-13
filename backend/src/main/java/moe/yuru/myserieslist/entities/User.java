@@ -9,8 +9,8 @@ public class User implements Serializable {
     private @Id @GeneratedValue int id;
     private String username;
     private String password;
-    private ArrayList<Film> filmsList = new ArrayList<>();
-    private ArrayList<Serie> seriesList = new ArrayList<>();
+    private ArrayList<Film> filmsList = new ArrayList<Film>();
+    private ArrayList<Serie> seriesList = new ArrayList<Serie>();
 
     public String getUsername() {
         return username;
