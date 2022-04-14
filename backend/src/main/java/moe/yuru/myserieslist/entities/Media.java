@@ -17,6 +17,7 @@ public class Media implements Serializable {
 
     private String nom;
     private MediaType type;
+    private String coverUrl;
 
     @ManyToOne
     Media parent;
@@ -27,9 +28,8 @@ public class Media implements Serializable {
     @OneToMany(mappedBy = "media", fetch = FetchType.EAGER)
     private Collection<Commentaire> commentaires;
 
-    public Media(String nom, MediaType type) {
-        this.nom = nom;
-        this.type = type;
+    public int getId() {
+        return id;
     }
 
     public String getNom() {
@@ -47,4 +47,13 @@ public class Media implements Serializable {
     public void setType(MediaType type) {
         this.type = type;
     }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
 }

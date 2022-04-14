@@ -12,32 +12,24 @@ public class Commentaire implements Serializable {
 
     private @Id @GeneratedValue int id;
 
-    private String titre;
+    private String auteur;
     private int note;
+    private String titre;
     private String message;
-    private String auteurs;
 
     @ManyToOne
     Media media;
 
-    public String getTitre() {
-        return titre;
+    public int getId() {
+        return id;
     }
 
-    public String getAuteurs() {
-        return auteurs;
+    public String getAuteur() {
+        return auteur;
     }
 
-    public void setAuteurs(String auteurs) {
-        this.auteurs = auteurs;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setAuteur(String auteur) {
+        this.auteur = auteur;
     }
 
     public int getNote() {
@@ -48,7 +40,20 @@ public class Commentaire implements Serializable {
         this.note = note;
     }
 
+    public String getTitre() {
+        return titre;
+    }
+
     public void setTitre(String titre) {
         this.titre = titre;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 }
