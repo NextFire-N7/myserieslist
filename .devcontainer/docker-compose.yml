@@ -17,6 +17,8 @@ services:
 
     volumes:
       - ..:/myserieslist:cached
+      - backend-target:/myserieslist/backend/target
+      - frontend-node_modules:/myserieslist/frontend/node_modules
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -43,3 +45,5 @@ services:
 
 volumes:
   mysql-data:
+  backend-target:
+  frontend-node_modules:
