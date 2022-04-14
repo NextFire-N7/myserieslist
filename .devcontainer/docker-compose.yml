@@ -17,6 +17,7 @@ services:
 
     volumes:
       - ..:/myserieslist:cached
+      - maven-cache:/home/vscode/.m2
       - backend-target:/myserieslist/backend/target
       - frontend-node_modules:/myserieslist/frontend/node_modules
 
@@ -45,5 +46,6 @@ services:
 
 volumes:
   mysql-data:
+  maven-cache:
   backend-target:
   frontend-node_modules:
