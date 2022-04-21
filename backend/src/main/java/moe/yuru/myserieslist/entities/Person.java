@@ -10,6 +10,7 @@ import javax.persistence.Id;
 public class Person implements Serializable {
 
     private @Id @GeneratedValue int id;
+
     private String lastName;
     private String firstName;
 

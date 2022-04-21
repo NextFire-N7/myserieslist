@@ -3,8 +3,8 @@ version: "3.8"
 services:
   app:
     build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
+      context: .
+      dockerfile: Dockerfile
       args:
         # Update the VARIANT arg to pick a Java version: 11, 17
         # Append -bullseye or -buster to pin to an OS version.
@@ -16,7 +16,10 @@ services:
         NODE_VERSION: "lts/*"
 
     volumes:
-      - ..:/workspace:cached
+      - ..:/myserieslist:cached
+      - maven-cache:/home/vscode/.m2
+      - backend-target:/myserieslist/backend/target
+      - frontend-node_modules:/myserieslist/frontend/node_modules
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -31,7 +34,7 @@ services:
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
   db:
-    image: mysql:latest
+    image: mysql:oracle
     restart: unless-stopped
     volumes:
       - mysql-data:/var/lib/mysql
@@ -43,3 +46,6 @@ services:
 
 volumes:
   mysql-data:
+  maven-cache:
+  backend-target:
+  frontend-node_modules:
