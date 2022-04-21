@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Media } from "../../utils/types";
 
 export default function MediaCard({ media }: { media: Media }) {
@@ -8,8 +9,10 @@ export default function MediaCard({ media }: { media: Media }) {
         alt={media.nom}
         className="aspect-[2/3] object-cover"
       />
-      <div className="px-2">
-        <h1>{media.nom}</h1>
+      <div className="p-2">
+        <Link href={`/media/${media.id}`}>
+          <a className="font-bold hover:underline text-blue-800">{media.nom}</a>
+        </Link>
         <p>{media.type}</p>
       </div>
     </div>

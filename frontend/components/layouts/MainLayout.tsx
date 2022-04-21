@@ -8,8 +8,6 @@ export default function MainLayout({
   router: Router;
   children: React.ReactNode;
 }) {
-  console.log(router);
-
   return (
     <div>
       <Navbar router={router} />
@@ -21,13 +19,18 @@ export default function MainLayout({
 
 function Navbar({ router }: { router: Router }) {
   function aClassName(path: string) {
-    return router.route === path ? "underline underline-offset-2" : "";
+    return (
+      (router.route === path ? "font-bold " : "") +
+      "hover:underline underline-offset-2"
+    );
   }
 
   return (
-    <nav className="sticky top-0 flex space-x-10 p-3 bg-indigo-300 bg-opacity-80">
-      <h1 className="font-bold text-white">MSL</h1>
-      <ul className="space-x-10">
+    <nav className="sticky top-0 flex py-3 bg-indigo-300 bg-opacity-80">
+      <Link href="/">
+        <a className="mx-10 font-bold text-white">MSL</a>
+      </Link>
+      <ul className="space-x-10 mx-auto">
         <Link href="/">
           <a className={aClassName("/")}>Home</a>
         </Link>
