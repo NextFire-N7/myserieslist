@@ -55,5 +55,9 @@ public class Media implements Serializable {
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
     }
+    
+    public Collection<Commentaire> getCommentaire() {
+        return commentaires;
+    }
 
 }
