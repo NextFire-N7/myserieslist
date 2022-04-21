@@ -25,7 +25,7 @@ function Navbar({ router }: { router: Router }) {
   }
 
   return (
-    <nav className="sticky top-0 flex space-x-10 p-3 bg-orange-300 bg-opacity-80">
+    <nav className="sticky top-0 flex space-x-10 p-3 bg-indigo-300 bg-opacity-80">
       <h1 className="font-bold text-white">MSL</h1>
       <ul className="space-x-10">
         <Link href="/">
@@ -41,7 +41,7 @@ function Navbar({ router }: { router: Router }) {
 
 function Footer() {
   return (
-    <footer className="flex bg-orange-300 items-center justify-center">
+    <footer className="flex bg-indigo-300 items-center justify-center">
       <a href="https://github.com/NextFire-n7/myserieslist">GitHub</a>
     </footer>
   );
