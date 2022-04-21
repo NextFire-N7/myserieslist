@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Media } from "../../utils/types";
+import type { Media } from "../../utils/types";
 
 export default function MediaCard({ media }: { media: Media }) {
   return (

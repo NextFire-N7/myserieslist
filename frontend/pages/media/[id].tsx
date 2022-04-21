@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
 import MediaCard from "../../components/media/MediaCard";
-import { Media } from "../../utils/types";
+import type { Media } from "../../utils/types";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const resp = await fetch(

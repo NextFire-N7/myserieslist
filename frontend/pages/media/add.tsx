@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useCallback, useState } from "react";
 import MediaCard from "../../components/media/MediaCard";
-import { Media } from "../../utils/types";
+import type { Media } from "../../utils/types";
 
 const MediaAdd: NextPage = () => {
   const [lastSubmitted, setLastSubmitted] = useState<Media | null>(null);

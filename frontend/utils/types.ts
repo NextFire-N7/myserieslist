@@ -12,9 +12,3 @@ export enum MediaType {
   ANIME,
   EPISODE,
 }
-
-export interface Person {
-  id: number;
-  lastName: string;
-  firstName: string;
-}
