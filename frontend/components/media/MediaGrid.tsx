@@ -1,4 +1,4 @@
-import { Media } from "../utils/types";
+import { Media } from "../../utils/types";
 import MediaCard from "./MediaCard";
 
 export default function MediaGrid({ medias }: { medias: Media[] }) {

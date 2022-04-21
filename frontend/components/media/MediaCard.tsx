@@ -1,4 +1,4 @@
-import { Media } from "../utils/types";
+import { Media } from "../../utils/types";
 
 export default function MediaCard({ media }: { media: Media }) {
   return (

@@ -1,5 +1,5 @@
-import type { NextPage, GetServerSideProps } from "next";
-import MediaGrid from "../components/MediaGrid";
+import type { GetServerSideProps, NextPage } from "next";
+import MediaGrid from "../components/media/MediaGrid";
 import { Media } from "../utils/types";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
