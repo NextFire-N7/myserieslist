@@ -1,6 +1,5 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
-import { Person } from "../utils/types";
 
 // server-side
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -90,3 +89,9 @@ const Persons: NextPage<{ message: string; persons: Person[] }> = ({
 };
 
 export default Persons;
+
+interface Person {
+  id: number;
+  lastName: string;
+  firstName: string;
+}

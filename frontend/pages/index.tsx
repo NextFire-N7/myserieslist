@@ -1,6 +1,6 @@
-import type { NextPage, GetServerSideProps } from "next";
-import MediaGrid from "../components/MediaGrid";
-import { Media } from "../utils/types";
+import type { GetServerSideProps, NextPage } from "next";
+import MediaGrid from "../components/media/MediaGrid";
+import type { Media } from "../utils/types";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const resp = await fetch("http://localhost:3000/api/medias");
@@ -11,7 +11,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const Home: NextPage<{ medias: Media[] }> = ({ medias }) => {
   return (
     <div>
-      <MediaGrid medias={medias} />
+      <h1 className="font-bold text-xl mb-2">Last Entries</h1>
+      <MediaGrid medias={medias.sort((a, b) => b.id - a.id)} />
     </div>
   );
 };
