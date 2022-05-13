@@ -1,5 +1,4 @@
 package moe.yuru.myserieslist.services;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,42 +11,43 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import moe.yuru.myserieslist.entities.Media;
+import moe.yuru.myserieslist.entities.Commentaire;
 
-@Path("/medias")
-public class MediasService {
 
+
+@Path("/commentaires")
+public class CommentairesService {
+    
     @PersistenceContext
     private EntityManager em;
 
-    @GET
+    @GET 
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> mediasGet() {
-        Map<String, Serializable> data = new HashMap<>();
-        ArrayList<Media> med = new ArrayList<>();
-        med.addAll(em.createQuery("FROM Media", Media.class).getResultList());
-        data.put("medias", med);
+    public Map<String,Serializable> commentairesGet() {
+        Map<String,Serializable> data = new HashMap<>();
+        ArrayList<Commentaire> comm = new ArrayList<>();
+        comm.addAll(em.createQuery("FROM Commentaires", Commentaire.class).getResultList());
+        data.put("commentaires", comm);
         return data;
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Media mediasGetById(@PathParam("id") int id) {
-        return em.find(Media.class, id);
+    public Commentaire commentairesGetById(int id) {
+        return em.find(Commentaire.class, id);
     }
-
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Media mediasPost(Media media) {
-        em.persist(media);
-        return media;
+    public Commentaire commentairesPost(Commentaire commentaires) {
+        em.persist(commentaires);
+        return commentaires;
     }
-
+    
 }
