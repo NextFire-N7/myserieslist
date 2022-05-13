@@ -9,13 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class User implements Serializable {
 
     private @Id @GeneratedValue int id;
 
     private String pseudo;
+    private transient String passwordHash;
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
     private Collection<Media> viewedMedias;
@@ -35,5 +35,12 @@ public class User implements Serializable {
         this.pseudo = pseudo;
     }
 
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 
 }
