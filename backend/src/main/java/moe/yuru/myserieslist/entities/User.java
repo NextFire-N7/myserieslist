@@ -20,7 +20,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
     private Collection<Media> viewedMedias;
 
-    @OneToMany(mappedBy = "media", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "media")
     private Collection<Commentaire> commentaires;
 
     public int getId() {
