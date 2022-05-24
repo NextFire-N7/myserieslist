@@ -1,8 +1,6 @@
 package moe.yuru.myserieslist.services;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -12,6 +10,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -20,7 +19,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import moe.yuru.myserieslist.entities.User;
 
-@Path("/User")
+@Path("/users")
 public class UsersService {
 
     @PersistenceContext
@@ -29,20 +28,10 @@ public class UsersService {
     private static Algorithm algorithm = Algorithm.HMAC256("secret");
 
     @GET
+    @Path("/{pseudo}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> usersGet() {
-        Map<String, Serializable> data = new HashMap<>();
-        ArrayList<User> user = new ArrayList<>();
-        user.addAll(em.createQuery("FROM User", User.class).getResultList());
-        data.put("us", user);
-        return data;
-    }
-
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public User userGetById(int id) {
-        return em.find(User.class, id);
+    public User userGetByPseudo(@PathParam("pseudo") String pseudo) {
+        return em.find(User.class, pseudo);
     }
 
     @POST
@@ -55,6 +44,7 @@ public class UsersService {
         String password = (String) data.get("password");
         String passwordHash = BCrypt.withDefaults().hashToString(12, password.toCharArray());
         newUser.setPasswordHash(passwordHash);
+        newUser.setPhotoUrl((String) data.get("photoUrl"));
         em.persist(newUser);
         return newUser;
     }

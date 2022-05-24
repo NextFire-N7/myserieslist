@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Router } from "next/router";
+import { useContext } from "react";
+import { UserContext } from "../../pages/_app";
 
 export default function MainLayout({
   router,
@@ -12,12 +14,14 @@ export default function MainLayout({
     <div>
       <Navbar router={router} />
       <main className="m-5">{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
 
 function Navbar({ router }: { router: Router }) {
+  const user = useContext(UserContext);
+
   function aClassName(path: string) {
     return (
       (router.route === path ? "font-bold " : "") +
@@ -38,6 +42,16 @@ function Navbar({ router }: { router: Router }) {
           <a className={aClassName("/media/add")}>Add Media</a>
         </Link>
       </ul>
+      {user ?? (
+        <ul className="mx-10 space-x-5 text-blue-700">
+          <Link href="/login">
+            <a className={aClassName("/login")}>Login</a>
+          </Link>
+          <Link href="/register">
+            <a className={aClassName("/register")}>Register</a>
+          </Link>
+        </ul>
+      )}
     </nav>
   );
 }

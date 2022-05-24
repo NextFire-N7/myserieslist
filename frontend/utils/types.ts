@@ -12,3 +12,8 @@ export enum MediaType {
   ANIME,
   EPISODE,
 }
+
+export interface User {
+  pseudo: string;
+  photoUrl: string;
+}
