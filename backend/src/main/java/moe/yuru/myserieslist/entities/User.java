@@ -8,8 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.auth0.jwt.algorithms.Algorithm;
-
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 @Entity
