@@ -16,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 
 import com.auth0.jwt.algorithms.Algorithm;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import moe.yuru.myserieslist.entities.User;
 
 @Path("/users")
@@ -41,9 +40,7 @@ public class UsersService {
     public User userPost(Map<String, Serializable> data) {
         User newUser = new User();
         newUser.setPseudo((String) data.get("pseudo"));
-        String password = (String) data.get("password");
-        String passwordHash = BCrypt.withDefaults().hashToString(12, password.toCharArray());
-        newUser.setPasswordHash(passwordHash);
+        newUser.setPassword((String) data.get("password"));
         newUser.setPhotoUrl((String) data.get("photoUrl"));
         em.persist(newUser);
         return newUser;

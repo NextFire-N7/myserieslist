@@ -8,6 +8,10 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.auth0.jwt.algorithms.Algorithm;
+
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 @Entity
 public class User implements Serializable {
 
@@ -21,16 +25,21 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "media")
     private Collection<Commentaire> commentaires;
 
+    public boolean checkPassword(String password) {
+        return BCrypt.verifyer().verify(password.toCharArray(), passwordHash).verified;
+    }
+
+    public void setPassword(String password) {
+        String passwordHash = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+        this.passwordHash = passwordHash;
+    }
+
     public String getPseudo() {
         return pseudo;
     }
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
     }
 
     public String getPhotoUrl() {
