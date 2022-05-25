@@ -15,6 +15,7 @@ const Register: NextPage = () => {
     });
     const data = await resp.json();
     console.log(data);
+    location.href = "/login";
   }, []);
 
   return (

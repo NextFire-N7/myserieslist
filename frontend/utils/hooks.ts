@@ -2,17 +2,18 @@ import { useEffect, useState } from "react";
 
 export function useSessionStorage<T>(
   key: string
-): [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>] {
-  const [state, setState] = useState<T>();
+): [T | null, (value: T | null) => void] {
+  const [state, _setState] = useState<T | null>(null);
+
+  const setState = (value: T | null) => {
+    _setState(value);
+    sessionStorage.setItem(key, JSON.stringify(value));
+  };
 
   useEffect(() => {
     const item = sessionStorage.getItem(key);
-    if (item) setState(JSON.parse(item));
+    if (item) _setState(JSON.parse(item));
   }, [key]);
-
-  useEffect(() => {
-    if (state) sessionStorage.setItem(key, JSON.stringify(state));
-  }, [key, state]);
 
   return [state, setState];
 }

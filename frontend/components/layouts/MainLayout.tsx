@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Router } from "next/router";
+import { useCallback } from "react";
 import { useSessionStorage } from "../../utils/hooks";
 import type { AuthData } from "../../utils/types";
 
@@ -29,6 +30,8 @@ function Navbar({ router }: { router: Router }) {
     );
   }
 
+  const disconnect = useCallback(() => setAuth(null), [setAuth]);
+
   return (
     <nav className="sticky top-0 flex py-3 bg-indigo-300 bg-opacity-80">
       <Link href="/">
@@ -49,6 +52,9 @@ function Navbar({ router }: { router: Router }) {
               {auth.user.pseudo}
             </a>
           </Link>
+          <a href="/" onClick={disconnect}>
+            Disconnect
+          </a>
         </ul>
       ) : (
         <ul className="mx-10 space-x-5 text-blue-700">
