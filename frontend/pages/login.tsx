@@ -1,19 +1,28 @@
 import type { NextPage } from "next";
 import { useCallback } from "react";
+import { useSessionStorage } from "../utils/hooks";
+import type { AuthData } from "../utils/types";
 
 const Login: NextPage = () => {
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    const resp = await fetch(`/api/users/${e.target.elements.pseudo.value}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        password: e.target.elements.password.value,
-      }),
-    });
-    const data = await resp.json();
-    console.log(data);
-  }, []);
+  const [auth, setAuth] = useSessionStorage<AuthData>("auth");
+
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const resp = await fetch(`/api/users/${e.target.elements.pseudo.value}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          password: e.target.elements.password.value,
+        }),
+      });
+      const data = await resp.json();
+      console.log(data);
+      setAuth(data);
+      location.href = "/";
+    },
+    [setAuth]
+  );
 
   return (
     <form onSubmit={handleSubmit} className="mx-2">

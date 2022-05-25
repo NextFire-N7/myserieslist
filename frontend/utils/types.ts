@@ -17,3 +17,8 @@ export interface User {
   pseudo: string;
   photoUrl: string;
 }
+
+export interface AuthData {
+  token: string;
+  user: User;
+}

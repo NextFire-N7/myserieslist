@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Router } from "next/router";
-import { useContext } from "react";
-import { UserContext } from "../../pages/_app";
+import { useSessionStorage } from "../../utils/hooks";
+import type { AuthData } from "../../utils/types";
 
 export default function MainLayout({
   router,
@@ -20,7 +20,7 @@ export default function MainLayout({
 }
 
 function Navbar({ router }: { router: Router }) {
-  const user = useContext(UserContext);
+  const [auth, setAuth] = useSessionStorage<AuthData>("auth");
 
   function aClassName(path: string) {
     return (
@@ -42,7 +42,15 @@ function Navbar({ router }: { router: Router }) {
           <a className={aClassName("/media/add")}>Add Media</a>
         </Link>
       </ul>
-      {user ?? (
+      {auth ? (
+        <ul className="mx-10 space-x-5 text-blue-700">
+          <Link href={`/user/${auth.user.pseudo}`}>
+            <a className={aClassName(`/user/${auth.user.pseudo}`)}>
+              {auth.user.pseudo}
+            </a>
+          </Link>
+        </ul>
+      ) : (
         <ul className="mx-10 space-x-5 text-blue-700">
           <Link href="/login">
             <a className={aClassName("/login")}>Login</a>
