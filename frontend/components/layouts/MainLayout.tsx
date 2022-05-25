@@ -35,7 +35,7 @@ function Navbar({ router }: { router: Router }) {
   return (
     <nav className="sticky top-0 flex py-3 bg-indigo-300 bg-opacity-80">
       <Link href="/">
-        <a className="mx-10 font-bold text-white">MySeriesList</a>
+        <a className="mx-10 font-bold text-blue-700">MySeriesList</a>
       </Link>
       <ul className="space-x-10 mx-auto">
         <Link href="/">

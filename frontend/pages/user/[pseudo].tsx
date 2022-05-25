@@ -20,7 +20,7 @@ const Profile: NextPage<{ user: User }> = ({ user }) => {
         <img
           src={user.photoUrl}
           alt={user.pseudo}
-          className="h-[40vh] rounded-full mx-auto"
+          className="w-1/5 rounded-full mx-auto"
         />
         <h1 className="font-bold text-4xl">{user.pseudo}</h1>
       </header>

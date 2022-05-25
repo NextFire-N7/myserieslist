@@ -30,11 +30,11 @@ const Login: NextPage = () => {
       <div className="mt-4 max-w-md">
         <div className="grid grid-cols-1 gap-4">
           <label className="block">
-            <span className="text-gray-700">Pseudo</span>
+            <span>Pseudo</span>
             <input name="pseudo" type="text" className="mt-1 block w-full" />
           </label>
           <label className="block">
-            <span className="text-gray-700">Password</span>
+            <span>Password</span>
             <input
               name="password"
               type="password"

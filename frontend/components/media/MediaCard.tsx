@@ -31,7 +31,7 @@ export default function MediaCard({ media }: { media: Media }) {
         <Link href={`/media/${media.id}`}>
           <a className="font-bold hover:underline text-blue-800">{media.nom}</a>
         </Link>
-        <p>{media.type}</p>
+        <p className="text-blue-400">{media.type}</p>
         {auth && (
           <div>
             <button
