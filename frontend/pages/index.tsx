@@ -4,7 +4,7 @@ import type { Media } from "../utils/types";
 
 export const getServerSideProps: GetServerSideProps<{
   medias: Media[];
-}> = async (context) => {
+}> = async () => {
   const resp = await fetch("http://localhost:3000/api/medias");
   const data = await resp.json();
   return { props: data };

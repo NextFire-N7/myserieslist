@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -17,7 +18,7 @@ public class User implements Serializable {
     private String passwordHash;
     private String photoUrl;
 
-    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Media> viewedMedias;
 
     @OneToMany(mappedBy = "media")
@@ -46,6 +47,14 @@ public class User implements Serializable {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public Collection<Media> getViewedMedias() {
+        return viewedMedias;
+    }
+
+    public void setViewedMedias(Collection<Media> viewedMedias) {
+        this.viewedMedias = viewedMedias;
     }
 
 }

@@ -16,9 +16,10 @@ export enum MediaType {
 export interface User {
   pseudo: string;
   photoUrl: string;
+  viewedMedias: Media[];
 }
 
 export interface AuthData {
   token: string;
-  user: User;
+  pseudo: string;
 }

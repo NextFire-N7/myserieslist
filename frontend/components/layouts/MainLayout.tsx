@@ -47,12 +47,10 @@ function Navbar({ router }: { router: Router }) {
       </ul>
       {auth ? (
         <ul className="mx-10 space-x-5 text-blue-700">
-          <Link href={`/user/${auth.user.pseudo}`}>
-            <a className={aClassName(`/user/${auth.user.pseudo}`)}>
-              {auth.user.pseudo}
-            </a>
+          <Link href={`/user/${auth.pseudo}`}>
+            <a className={aClassName(`/user/${auth.pseudo}`)}>{auth.pseudo}</a>
           </Link>
-          <a href="/" onClick={disconnect}>
+          <a href="/" onClick={disconnect} className="text-red-700">
             Disconnect
           </a>
         </ul>

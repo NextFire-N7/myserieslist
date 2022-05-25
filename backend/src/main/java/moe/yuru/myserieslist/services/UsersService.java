@@ -1,6 +1,7 @@
 package moe.yuru.myserieslist.services;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
+import moe.yuru.myserieslist.entities.Media;
 import moe.yuru.myserieslist.entities.User;
 
 @Path("/users")
@@ -26,8 +28,14 @@ public class UsersService {
     @PersistenceContext
     private EntityManager em;
 
-    private static Algorithm algorithm = Algorithm.HMAC256("secret");
+    private static Algorithm algorithm = Algorithm.HMAC256("very-secret");
 
+    /**
+     * Lookup user by username
+     * 
+     * @param pseudo
+     * @return User
+     */
     @GET
     @Path("/{pseudo}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -35,23 +43,12 @@ public class UsersService {
         return em.find(User.class, pseudo);
     }
 
-    @POST
-    @Path("/{pseudo}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> userLogIn(@PathParam("pseudo") String pseudo, Map<String, Serializable> data) {
-        Map<String, Serializable> dict = new HashMap<>();
-        User user = em.find(User.class, pseudo);
-        if (user.checkPassword((String) data.get("password"))) {
-            dict.put("user", user);
-            String token = JWT.create()
-                    .withSubject(user.getPseudo())
-                    .sign(algorithm);
-            dict.put("token", token);
-        }
-        return dict;
-    }
-
+    /**
+     * Sign up
+     * 
+     * @param data
+     * @return User
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -63,6 +60,57 @@ public class UsersService {
         newUser.setPhotoUrl((String) data.get("photoUrl"));
         em.persist(newUser);
         return newUser;
+    }
+
+    /**
+     * Sign in
+     * 
+     * @param pseudo
+     * @param data   {password}
+     * @return {token, user}
+     */
+    @POST
+    @Path("/{pseudo}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map<String, Serializable> userLogIn(@PathParam("pseudo") String pseudo, Map<String, Serializable> data) {
+        Map<String, Serializable> dict = new HashMap<>();
+        User user = em.find(User.class, pseudo);
+        if (user.checkPassword((String) data.get("password"))) {
+            dict.put("pseudo", user.getPseudo());
+            String token = JWT.create()
+                    .withSubject(user.getPseudo())
+                    .sign(algorithm);
+            dict.put("token", token);
+        }
+        return dict;
+    }
+
+    @GET
+    @Path("/{pseudo}/medias")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Media> userGetMedias(@PathParam("pseudo") String pseudo) {
+        return null;
+    }
+
+    @POST
+    @Path("/{pseudo}/medias")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Media userPostMedia(@PathParam("pseudo") String pseudo, Map<String, Serializable> data) {
+        String sub = JWT.decode((String) data.get("token")).getSubject();
+        if (!sub.equals(pseudo)) {
+            throw new RuntimeException("Invalid token");
+        }
+        User user = em.find(User.class, pseudo);
+        Media media = em.find(Media.class, (int) data.get("id"));
+        Collection<Media> viewedMedias = user.getViewedMedias();
+        if (!viewedMedias.contains(media)) {
+            viewedMedias.add(media);
+        }
+        em.merge(user);
+        return media;
     }
 
 }
