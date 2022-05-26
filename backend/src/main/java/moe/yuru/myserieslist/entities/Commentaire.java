@@ -56,4 +56,7 @@ public class Commentaire implements Serializable {
         this.message = message;
     }
 
+    public void setMedia(Media media) {
+        this.media = media;
+    }
 }

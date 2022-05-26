@@ -11,10 +11,15 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.auth0.jwt.JWT;
+
 import moe.yuru.myserieslist.entities.Commentaire;
+import moe.yuru.myserieslist.entities.Media;
+import moe.yuru.myserieslist.entities.User;
 
 
 
@@ -42,12 +47,28 @@ public class CommentairesService {
     }
     
     @POST
+    @Path("/{pseudo}/posted")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Commentaire commentairesPost(Commentaire commentaires) {
-        em.persist(commentaires);
-        return commentaires;
+    public Commentaire commentairePost(@PathParam("pseudo") String pseudo, Map<String, Serializable> data) {
+        String sub = JWT.decode((String) data.get("token")).getSubject();
+        if (!sub.equals(pseudo)) {
+            throw new RuntimeException("Invalid token");
+        }
+        User user = em.find(User.class, pseudo);
+        Media media = em.find(Media.class, (int) data.get("id"));
+        String titre = (String) data.get("titre");
+        String detail = (String) data.get("detail");
+        int note = (int) data.get("note");
+        Commentaire commentaire = new Commentaire();
+        commentaire.setAuteur(user.getPseudo());
+        commentaire.setTitre(titre);
+        commentaire.setNote(note);
+        commentaire.setMessage(detail);
+        commentaire.setMedia(media);
+        em.persist(commentaire);
+        return commentaire;
     }
     
 }

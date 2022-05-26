@@ -23,3 +23,9 @@ export interface AuthData {
   token: string;
   pseudo: string;
 }
+
+export interface Commentaire {
+  titre : string;
+  detail : string;
+  note : number;
+}
