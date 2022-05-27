@@ -36,7 +36,7 @@ public class Media implements Serializable {
     private Franchises franchise;
 
     @OneToMany
-    private AiringSchedule airingSchedule;
+    private Collection<AiringSchedule> airingSchedule;
 
     @OneToMany(mappedBy = "media", fetch = FetchType.EAGER)
     private Collection<Character> characters;
@@ -81,13 +81,12 @@ public class Media implements Serializable {
         this.franchise = franchise;
     }
 
-    public AiringSchedule getAiringSchedule() {
+    public Collection<AiringSchedule> getAiringSchedule() {
         return airingSchedule;
     }
 
-    public void setAiringSchedule(AiringSchedule airingSchedule) {
+    public void setAiringSchedule(Collection<AiringSchedule> airingSchedule) {
         this.airingSchedule = airingSchedule;
     }
-
     
 }
