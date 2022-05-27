@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -27,6 +28,9 @@ public class Media implements Serializable {
 
     @OneToMany(mappedBy = "media", fetch = FetchType.EAGER)
     private Collection<Commentaire> commentaires;
+
+    @ManyToMany(mappedBy = "medias", fetch = FetchType.EAGER)
+    private Collection<Person> personnes;
 
     public int getId() {
         return id;

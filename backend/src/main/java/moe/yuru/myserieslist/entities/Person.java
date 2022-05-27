@@ -1,10 +1,14 @@
 package moe.yuru.myserieslist.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+//import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
 @Entity
 public class Person implements Serializable {
@@ -14,6 +18,10 @@ public class Person implements Serializable {
     private String lastName;
     private String firstName;
     private String photoUrl;
+    private PersonType type;
+
+    @ManyToMany
+    private Collection<Media> medias;
     
 
     public Person(String lastName, String firstName, String photoUrl) {
@@ -48,6 +56,22 @@ public class Person implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public PersonType getType() {
+        return type;
+    }
+
+    public void setType(PersonType type) {
+        this.type = type;
+    }
+
+    public Collection<Media> getMedias() {
+        return medias;
+    }
+
+    public void setMedias(Collection<Media> medias) {
+        this.medias = medias;
     }
 
 }
