@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 //import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
@@ -22,7 +23,9 @@ public class Person implements Serializable {
 
     @ManyToMany
     private Collection<Media> medias;
-    
+
+    @OneToMany
+    private Collection<Character> roles;    
 
     public Person(String lastName, String firstName, String photoUrl) {
         this.lastName = lastName;
@@ -72,6 +75,14 @@ public class Person implements Serializable {
 
     public void setMedias(Collection<Media> medias) {
         this.medias = medias;
+    }
+
+    public Collection<Character> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Character> roles) {
+        this.roles = roles;
     }
 
 }

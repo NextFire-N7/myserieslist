@@ -12,13 +12,15 @@ public class Commentaire implements Serializable {
 
     private @Id @GeneratedValue int id;
 
-    private String auteur;
     private int note;
     private String titre;
     private String message;
 
     @ManyToOne
     Media media;
+
+    @ManyToOne
+    private String auteur;
 
     public int getId() {
         return id;

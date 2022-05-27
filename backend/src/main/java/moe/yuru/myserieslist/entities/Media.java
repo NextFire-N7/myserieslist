@@ -38,6 +38,9 @@ public class Media implements Serializable {
     @OneToMany
     private AiringSchedule airingSchedule;
 
+    @OneToMany(mappedBy = "media", fetch = FetchType.EAGER)
+    private Collection<Character> characters;
+
     public int getId() {
         return id;
     }
