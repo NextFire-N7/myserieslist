@@ -35,9 +35,6 @@ public class Media implements Serializable {
     @ManyToOne
     private Franchises franchise;
 
-    @OneToMany
-    private Collection<AiringSchedule> airingSchedule;
-
     @OneToMany(mappedBy = "mediachar")
     private Collection<Character> characters;
 
