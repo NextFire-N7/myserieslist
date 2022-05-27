@@ -77,13 +77,5 @@ public class Media implements Serializable {
     public void setFranchise(Franchises franchise) {
         this.franchise = franchise;
     }
-
-    public Collection<AiringSchedule> getAiringSchedule() {
-        return airingSchedule;
-    }
-
-    public void setAiringSchedule(Collection<AiringSchedule> airingSchedule) {
-        this.airingSchedule = airingSchedule;
-    }
     
 }
