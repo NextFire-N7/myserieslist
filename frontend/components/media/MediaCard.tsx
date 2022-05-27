@@ -64,8 +64,8 @@ export default function MediaCard({ media }: { media: Media }) {
               Add to list
             </button>
             <button
-              onClick={() => setShowAddComment(true)}
-              className="rounded-full bg-blue-400 px-2"
+              onClick={() => showAddComment ? setShowAddComment(false) : setShowAddComment(true)}
+              className="rounded-full bg-blue-400 px-2 m-1"
             >
               Add Comment
             </button>
@@ -106,7 +106,7 @@ export default function MediaCard({ media }: { media: Media }) {
               <label className="block">
                 <input
                   type="submit"
-                  className="rounded-full bg-blue-400 px-2"
+                  className="rounded-full bg-blue-400 px-3 m-2"
                 />
               </label>
             </form>
