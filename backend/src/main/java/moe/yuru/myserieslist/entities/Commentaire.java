@@ -19,7 +19,7 @@ public class Commentaire implements Serializable {
     @ManyToOne
     Media media;
 
-    @ManyToOne
+    
     private String auteur;
 
     public int getId() {

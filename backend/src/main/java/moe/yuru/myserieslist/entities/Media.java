@@ -29,7 +29,7 @@ public class Media implements Serializable {
     @OneToMany(mappedBy = "media", fetch = FetchType.EAGER)
     private Collection<Commentaire> commentaires;
 
-    @ManyToMany(mappedBy = "medias", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "medias")
     private Collection<Person> personnes;
 
     @ManyToOne
@@ -38,7 +38,7 @@ public class Media implements Serializable {
     @OneToMany
     private Collection<AiringSchedule> airingSchedule;
 
-    @OneToMany(mappedBy = "media", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "mediachar")
     private Collection<Character> characters;
 
     public int getId() {

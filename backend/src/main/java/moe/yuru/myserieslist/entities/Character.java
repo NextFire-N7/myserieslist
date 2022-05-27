@@ -16,7 +16,7 @@ public class Character implements Serializable {
     private String nom;
 
     @ManyToOne
-    Media media;
+    Media mediachar;
 
     public int getId() {
         return id;
@@ -31,11 +31,11 @@ public class Character implements Serializable {
     }
 
     public Media getMedia() {
-        return media;
+        return mediachar;
     }
 
     public void setMedia(Media media) {
-        this.media = media;
+        this.mediachar = media;
     }
 
 }
