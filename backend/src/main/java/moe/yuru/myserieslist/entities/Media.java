@@ -32,6 +32,12 @@ public class Media implements Serializable {
     @ManyToMany(mappedBy = "medias", fetch = FetchType.EAGER)
     private Collection<Person> personnes;
 
+    @ManyToOne
+    private Franchises franchise;
+
+    @OneToMany
+    private AiringSchedule airingSchedule;
+
     public int getId() {
         return id;
     }
@@ -64,4 +70,21 @@ public class Media implements Serializable {
         return commentaires;
     }
 
+    public Franchises getFranchise() {
+        return franchise;
+    }
+
+    public void setFranchise(Franchises franchise) {
+        this.franchise = franchise;
+    }
+
+    public AiringSchedule getAiringSchedule() {
+        return airingSchedule;
+    }
+
+    public void setAiringSchedule(AiringSchedule airingSchedule) {
+        this.airingSchedule = airingSchedule;
+    }
+
+    
 }
