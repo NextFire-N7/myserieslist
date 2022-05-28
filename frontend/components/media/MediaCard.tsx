@@ -112,14 +112,20 @@ export default function MediaCard({ media }: { media: Media }) {
             </form>
           </div>
         )}
-        <div className="container max-h-96 mx-auto py-8 overflow-y-auto">
-          <p className="text-blue-400">Commentaires :</p>
+        
+        <div className="container max-h-65 mx-auto rounded-lg bg-indigo-200 overflow-y-scroll">
+          <p className="text-blue-400 rounded-lg m-2 p-2 font-bold bg-indigo-100">Commentaires :</p>
           {media.commentaire.map((comm: { id: Key | null | undefined; titre: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; message: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; note: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; auteur: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => (
-            <div className="container mx-auto py-3" key={comm.id}>
-              <p className="text-stone-900 underline">{comm.titre} :</p>
-              <p className="text-stone-600">{comm.message}</p>
-              <p className="text-stone-600 text-sm">{comm.note}/5</p>
-              <p className="text-cyan-400">- {comm.auteur}</p>
+            <div className="mt-1000 flex flex-col rounded-lg m-2 shadow-xl bg-blue-400" key={comm.id}>
+              <p className="justify">
+                <label className="text-indigo-100 underline m-2 font-semibold">{comm.titre} :</label>
+                <label className="text-indigo-100 text-center bg-right">{comm.note}/5</label>
+              </p>
+              
+              <label className="rounded-lg p-2 bg-indigo-100">
+                <p className="text-stone-600">{comm.message}</p>
+                <p className="text-cyan-400">- {comm.auteur}</p>
+              </label>
             </div>
           ))}
         </div>
