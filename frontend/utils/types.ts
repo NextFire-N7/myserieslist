@@ -1,4 +1,5 @@
 export interface Media {
+  commentaire: any;
   id: number;
   nom: string;
   type: MediaType;

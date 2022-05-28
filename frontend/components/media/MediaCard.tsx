@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { Key, ReactChild, ReactFragment, ReactPortal, useCallback, useState } from "react";
 import { useSessionStorage } from "../../utils/hooks";
 import type { AuthData, Media } from "../../utils/types";
 
@@ -112,6 +112,17 @@ export default function MediaCard({ media }: { media: Media }) {
             </form>
           </div>
         )}
+        <div className="container max-h-96 mx-auto py-8 overflow-y-auto">
+          <p className="text-blue-400">Commentaires :</p>
+          {media.commentaire.map((comm: { id: Key | null | undefined; titre: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; message: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; note: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; auteur: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => (
+            <div className="container mx-auto py-3" key={comm.id}>
+              <p className="text-stone-900 underline">{comm.titre} :</p>
+              <p className="text-stone-600">{comm.message}</p>
+              <p className="text-stone-600 text-sm">{comm.note}/5</p>
+              <p className="text-cyan-400">- {comm.auteur}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
