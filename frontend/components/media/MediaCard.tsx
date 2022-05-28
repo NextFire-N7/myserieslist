@@ -113,7 +113,7 @@ export default function MediaCard({ media }: { media: Media }) {
           </div>
         )}
         
-        <div className="container max-h-65 mx-auto rounded-lg bg-indigo-200 overflow-y-scroll">
+        <div className="container mx-auto rounded-lg bg-indigo-200 overflow-y-scroll max-h-60">
           <p className="text-blue-400 rounded-lg m-2 p-2 font-bold bg-indigo-100">Commentaires :</p>
           {media.commentaire.map((comm: { id: Key | null | undefined; titre: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; message: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; note: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; auteur: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => (
             <div className="mt-1000 flex flex-col rounded-lg m-2 shadow-xl bg-blue-400" key={comm.id}>
