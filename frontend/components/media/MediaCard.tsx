@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useSessionStorage } from "../../utils/hooks";
 import type { AuthData, Media } from "../../utils/types";
+import CommmentaireGrid from "../commentaires/CommentaireGrid";
 
 export default function MediaCard({ media }: { media: Media }) {
   const [auth, setAuth] = useSessionStorage<AuthData>("auth");
@@ -112,6 +113,9 @@ export default function MediaCard({ media }: { media: Media }) {
             </form>
           </div>
         )}
+      </div>
+      <div>
+        <CommmentaireGrid commentaires={media.commentaires} />
       </div>
     </div>
   );
