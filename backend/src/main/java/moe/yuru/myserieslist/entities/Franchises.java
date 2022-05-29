@@ -21,6 +21,9 @@ public class Franchises implements Serializable {
     @OneToMany
     private Collection<Media> medias;
 
+    @OneToMany(mappedBy = "franchise")
+    private Collection<Achievement> achievements;
+
     public int getId() {
         return id;
     }
