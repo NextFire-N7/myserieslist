@@ -45,7 +45,7 @@ public class PersonService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Person mediasPost(Person person) {
+    public Person personPost(Person person) {
         em.persist(person);
         return person;
     }

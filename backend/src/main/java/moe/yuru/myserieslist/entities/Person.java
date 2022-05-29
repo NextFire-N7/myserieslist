@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-//import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
-
 @Entity
 public class Person implements Serializable {
 
@@ -25,13 +23,7 @@ public class Person implements Serializable {
     private Collection<Media> medias;
 
     @OneToMany
-    private Collection<Character> roles;    
-
-    public Person(String lastName, String firstName, String photoUrl) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.photoUrl = photoUrl;
-    }
+    private Collection<Character> roles;
 
     public String getPhotoUrl() {
         return photoUrl;

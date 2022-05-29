@@ -13,7 +13,7 @@ const PersonAdd : NextPage = () => {
       body: JSON.stringify({
         lastName: e.target.elements.lastName.value,
         firstName: e.target.elements.firstName.value,
-        coverUrl: e.target.elements.photoUrl.value,
+        photoUrl: e.target.elements.photoUrl.value,
         type: e.target.elements.type.value,
       }),
     });
