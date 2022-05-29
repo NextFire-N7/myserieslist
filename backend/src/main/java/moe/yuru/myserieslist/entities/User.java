@@ -24,6 +24,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "media")
     private Collection<Commentaire> commentaires;
 
+    @ManyToMany(mappedBy = "users")
+    private Collection<Achievement> achievements;
+
     public boolean checkPassword(String password) {
         return BCrypt.verifyer().verify(password.toCharArray(), passwordHash).verified;
     }
