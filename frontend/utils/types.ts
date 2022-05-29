@@ -32,9 +32,9 @@ export interface Commentaire {
 }
 
 export interface Person {
-  prenom : string;
-  nom : string;
-  photourl : string;
+  lastName: string;
+  firstName : string;
+  photoUrl : string;
   type : PersonType
 }
 
