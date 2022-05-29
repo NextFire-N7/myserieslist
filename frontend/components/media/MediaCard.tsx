@@ -82,7 +82,7 @@ export default function MediaCard({ media }: { media: Media }) {
                 <input
                   name="titleCom"
                   type="text"
-                  className="justify-center mt-1 block w-full"
+                  className="justify-center mt-1 block w-full text-black"
                 />
               </label>
               <label className="block">
@@ -90,7 +90,7 @@ export default function MediaCard({ media }: { media: Media }) {
                 <input
                   name="detailCom"
                   type="text"
-                  className="justify-center mt-1 block w-full"
+                  className="justify-center mt-1 block w-full text-black"
                 />
               </label>
               <label className="block">
@@ -100,7 +100,7 @@ export default function MediaCard({ media }: { media: Media }) {
                   name="noteCom"
                   min="1"
                   max="5"
-                  className="justify-center mt-1 block w-full"
+                  className="justify-center mt-1 block w-full text-black"
                 />
               </label>
               <label className="block">

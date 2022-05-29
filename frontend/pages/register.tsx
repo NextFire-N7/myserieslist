@@ -25,19 +25,19 @@ const Register: NextPage = () => {
         <div className="grid grid-cols-1 gap-4">
           <label className="block">
             <span>Pseudo</span>
-            <input name="pseudo" type="text" className="mt-1 block w-full" />
+            <input name="pseudo" type="text" className="mt-1 block w-full text-black" />
           </label>
           <label className="block">
             <span>Password</span>
             <input
               name="password"
               type="password"
-              className="mt-1 block w-full"
+              className="mt-1 block w-full text-black"
             />
           </label>
           <label className="block">
             <span>Profile picture link</span>
-            <input name="photoUrl" type="url" className="mt-1 block w-full" />
+            <input name="photoUrl" type="url" className="mt-1 block w-full text-black" />
           </label>
           <input
             type="submit"
