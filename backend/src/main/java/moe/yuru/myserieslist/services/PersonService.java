@@ -14,20 +14,18 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.PersonType;
+import javax.ws.rs.core.MediaType;
 
 import moe.yuru.myserieslist.entities.Person;
-
-
 
 @Path("/persons")
 public class PersonService {
 
     @PersistenceContext
     private EntityManager em;
-   
+
     @GET
-    @Produces(PersonType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Map<String, Serializable> personsGet() {
         Map<String, Serializable> data = new HashMap<>();
         ArrayList<Person> pers = new ArrayList<>();
@@ -38,14 +36,14 @@ public class PersonService {
 
     @GET
     @Path("/{id}")
-    @Produces(PersonType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Person personsGetById(@PathParam("id") int id) {
         return em.find(Person.class, id);
     }
 
     @POST
-    @Consumes(PersonType.APPLICATION_JSON)
-    @Produces(PersonType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Person mediasPost(Person person) {
         em.persist(person);
