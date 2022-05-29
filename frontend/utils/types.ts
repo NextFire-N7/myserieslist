@@ -43,3 +43,8 @@ export enum PersonType {
   DOUBLEUR,
   REALISATEUR
 }
+
+export interface Franchise {
+  nom : string;
+  coverUrl : string;
+}
