@@ -30,3 +30,16 @@ export interface Commentaire {
   detail : string;
   note : number;
 }
+
+export interface Person {
+  prenom : string;
+  nom : string;
+  photourl : string;
+  type : PersonType
+}
+
+export enum PersonType {
+  ACTEUR,
+  DOUBLEUR,
+  REALISATEUR
+}

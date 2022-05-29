@@ -44,6 +44,9 @@ function Navbar({ router }: { router: Router }) {
         <Link href="/media/add">
           <a className={aClassName("/media/add")}>Add Media</a>
         </Link>
+        <Link href="/person/add">
+          <a className={aClassName("/person/add")}>Add Actor</a>
+        </Link>
       </ul>
       {auth ? (
         <ul className="mx-10 space-x-5 text-blue-700">
