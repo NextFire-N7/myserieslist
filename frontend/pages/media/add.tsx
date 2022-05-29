@@ -26,9 +26,9 @@ const MediaAdd: NextPage = () => {
     <div className="space-y-5">
       <form onSubmit={handleSubmit} className="flex flex-col space-y-1">
         <label className="my-auto">Name</label>
-        <input type="text" name="nom" className="flex-1" />
+        <input type="text" name="nom" className="flex-1 text-black" />
         <label className="my-auto">Type</label>
-        <select name="type">
+        <select name="type" className="text-black">
           <option value="COLLECTION">Collection</option>
           <option value="MOVIE">Movie</option>
           <option value="TV">TV</option>
@@ -36,7 +36,7 @@ const MediaAdd: NextPage = () => {
           <option value="EPISODE">Episode</option>
         </select>
         <label className="my-auto">Cover URL</label>
-        <input type="url" name="coverUrl" className="flex-1" />
+        <input type="url" name="coverUrl" className="flex-1 text-black" />
         <input type="submit" className="flex-1 border-2 cursor-pointer" />
       </form>
 
