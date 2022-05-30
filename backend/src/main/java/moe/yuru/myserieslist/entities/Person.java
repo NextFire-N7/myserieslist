@@ -25,14 +25,6 @@ public class Person implements Serializable {
     @OneToMany
     private Collection<Chara> roles;
 
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
     public int getId() {
         return id;
     }
@@ -53,6 +45,14 @@ public class Person implements Serializable {
         this.firstName = firstName;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
     public PersonType getType() {
         return type;
     }
@@ -61,16 +61,8 @@ public class Person implements Serializable {
         this.type = type;
     }
 
-    public Collection<Media> getMedias() {
-        return medias;
-    }
-
     public void setMedias(Collection<Media> medias) {
         this.medias = medias;
-    }
-
-    public Collection<Chara> getRoles() {
-        return roles;
     }
 
     public void setRoles(Collection<Chara> roles) {

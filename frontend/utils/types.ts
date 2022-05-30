@@ -1,5 +1,5 @@
 export interface Media {
-  commentaire: any;
+  commentaire: Commentaire[];
   id: number;
   nom: string;
   type: MediaType;
@@ -26,8 +26,10 @@ export interface AuthData {
 }
 
 export interface Commentaire {
+  id: number;
   titre: string;
-  detail: string;
+  message: string;
+  auteur: string;
   note: number;
 }
 
