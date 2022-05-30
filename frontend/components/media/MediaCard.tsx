@@ -294,7 +294,7 @@ function AddActor({
         <form onSubmit={handleLinkActor} className="mx-2">
           <label className="text-blue-400">People to add</label>
           <br />
-          <select name="actorlink">
+          <select name="actorlink" className="text-black">
             {persons?.map((personnage) => (
               <option value={personnage.id} key={personnage.id}>
                 {personnage.firstName} {personnage.lastName}

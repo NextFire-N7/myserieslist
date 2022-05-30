@@ -69,7 +69,7 @@ public class PersonService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Person personlinkRole(Map<String, Serializable> data) {
-        Person person = em.find(Person.class, data.get("personId"));
+        Person person = em.find(Person.class, data.get("personsId"));
         Chara chara = em.find(Chara.class, data.get("charaId"));
         person.addRole(chara);
         return(person);
