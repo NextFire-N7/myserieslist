@@ -232,7 +232,7 @@ function AddActor({
       });
       const data = await resp.json();
       console.log(data);
-      setchar(data.chara)
+      setchar(data.chara);
 
     },
     [media.id]
