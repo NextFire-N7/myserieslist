@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useSessionStorage } from "../../utils/hooks";
-import { AuthData, Chara, Commentaire, Media, Person, PersonType } from "../../utils/types";
+import {
+  AuthData,
+  Chara,
+  Commentaire,
+  Media,
+  Person,
+  PersonType
+} from "../../utils/types";
 
 export default function MediaCard({ media }: { media: Media }) {
   const [auth, setAuth] = useSessionStorage<AuthData>("auth");
@@ -37,7 +44,7 @@ export default function MediaCard({ media }: { media: Media }) {
         });
         const data = await resp.json();
         console.log(data);
-        setpersons(data);
+        setpersons(data.person);
       }
     },
     [showAddActor]
@@ -91,7 +98,11 @@ export default function MediaCard({ media }: { media: Media }) {
           <NewCommentaire media={media} setShowAddComment={setShowAddComment} />
         )}
         {auth && showAddActor && (
-          <AddActor media={media} setShowAddActor={setShowAddActor} persons={persons} />
+          <AddActor
+            media={media}
+            setShowAddActor={setShowAddActor}
+            persons={persons}
+          />
         )}
       </div>
     </div>
@@ -206,88 +217,108 @@ function AddActor({
 }: {
   media: Media;
   setShowAddActor: React.Dispatch<React.SetStateAction<boolean>>;
-  persons : Person[] | null;
+  persons: Person[] | null;
 }) {
   const [acteur, setacteur] = useState(false);
-  const [characts, setchar] = useState<Chara[]|null>(null);
+  const [characts, setchar] = useState<Chara[] | null>(null);
 
-  const getLinkPerso = useCallback(async (e) => {
-    e.preventDefault();
-    const resp = await fetch(`api/characters/${media.id}/link`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await resp.json();
-    console.log(data);
-  }, [media.id]
+  const getLinkPerso = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const resp = await fetch(`api/characters/${media.id}/link`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await resp.json();
+      console.log(data);
+    },
+    [media.id]
   );
 
-  const handleLinkActor = useCallback(async (e) => {
-    e.preventDefault();
-    const resp = await fetch(`/api/persons/link`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        mediaId : media.id,
-        personsId: e.target.elements.actrorlink.value,
-      }),
-    });
-    const data = await resp.json();
-    console.log(data);
-    location.reload();
-    {persons?.map((personnage) => {
-      if (personnage.id == e.target.elements.actorlink.value && 
-        personnage.type == PersonType.ACTEUR) {
-        setacteur(true);
-      } else {
-        setShowAddActor(false);
-        getLinkPerso;
+  const handleLinkActor = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const resp = await fetch(`/api/persons/link`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mediaId: media.id,
+          personsId: e.target.elements.actrorlink.value,
+        }),
+      });
+      const data = await resp.json();
+      console.log(data);
+      location.reload();
+      {
+        persons?.map((personnage) => {
+          if (
+            personnage.id == e.target.elements.actorlink.value &&
+            personnage.type == PersonType.ACTEUR
+          ) {
+            setacteur(true);
+          } else {
+            setShowAddActor(false);
+            getLinkPerso;
+          }
+        });
       }
-    });}
-  }, [media.id, setShowAddActor, persons, getLinkPerso]);
+    },
+    [media.id, setShowAddActor, persons, getLinkPerso]
+  );
 
-  const handleLinkPerso = useCallback(async (e) => {
-    e.preventDefault();
-    const resp = await fetch(`api/persons/linkrole`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        personsId: e.target.elements.actrorlink.value,
-        charaId: e.target.elements.persolink.value,
-      }),
-    });
+  const handleLinkPerso = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const resp = await fetch(`api/persons/linkrole`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          personsId: e.target.elements.actrorlink.value,
+          charaId: e.target.elements.persolink.value,
+        }),
+      });
 
-    const data = await resp.json();
-    console.log(data);
-    setShowAddActor(false);
-    setacteur(false);
-  }, [setShowAddActor,setacteur]);
+      const data = await resp.json();
+      console.log(data);
+      setShowAddActor(false);
+      setacteur(false);
+    },
+    [setShowAddActor, setacteur]
+  );
+
+  console.log(persons);
 
   return (
     <div className="mt-1000 flex justify-center items-center flex-col rounded-lg shadow-xl p-2">
       {!acteur && (
         <form onSubmit={handleLinkActor} className="mx-2">
-          <label className="text-blue-400">People to add</label><br/>
+          <label className="text-blue-400">People to add</label>
+          <br />
           <select name="actorlink">
             {persons?.map((personnage) => (
               <option value={personnage.id} key={personnage.id}>
                 {personnage.firstName} {personnage.lastName}
               </option>
             ))}
-          </select><br/>
+          </select>
+          <br />
           <input type="submit" className="rounded-full bg-blue-400 px-3 m-2" />
         </form>
       )}
-      { acteur && (
+      {acteur && (
         <form onSubmit={handleLinkPerso} className="mx-2">
-          <label className="text-blue-400">Link the Actor to his Character</label><br/>
+          <label className="text-blue-400">
+            Link the Actor to his Character
+          </label>
+          <br />
           <select name="persolink">
             {characts?.map((charact) => (
               <option value={charact.id} key={charact.id}>
                 {charact.nom}
               </option>
             ))}
-          </select><br/>
+          </select>
+          <br />
           <input type="submit" className="rounded-full bg-blue-400 px-3 m-2" />
         </form>
       )}
