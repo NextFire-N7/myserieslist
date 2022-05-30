@@ -66,7 +66,7 @@ public class CharactersService {
         Map<String, Serializable> data = new HashMap<>();
         ArrayList<Chara> characters = new ArrayList<>();
         characters.addAll(em.createQuery("FROM Chara WHERE Chara.charamedia_id ="+id, Chara.class).getResultList());
-        data.put("person", characters);
+        data.put("chara", characters);
         return data; 
     }
 

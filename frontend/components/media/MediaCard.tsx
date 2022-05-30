@@ -222,6 +222,7 @@ function AddActor({
   const [acteur, setacteur] = useState(false);
   const [characts, setchar] = useState<Chara[] | null>(null);
 
+
   const getLinkPerso = useCallback(
     async (e) => {
       e.preventDefault();
@@ -231,6 +232,8 @@ function AddActor({
       });
       const data = await resp.json();
       console.log(data);
+      setchar(data.chara)
+
     },
     [media.id]
   );
