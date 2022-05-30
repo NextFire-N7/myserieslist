@@ -243,7 +243,7 @@ function AddActor({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mediaId: media.id,
-          personsId: e.target.elements.actrorlink.value,
+          personsId: e.target.elements.actorlink.value,
         }),
       });
       const data = await resp.json();
@@ -273,7 +273,7 @@ function AddActor({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          personsId: e.target.elements.actrorlink.value,
+          personsId: e.target.elements.actorlink.value,
           charaId: e.target.elements.persolink.value,
         }),
       });

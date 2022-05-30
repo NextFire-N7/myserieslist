@@ -17,6 +17,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
+
 import moe.yuru.myserieslist.entities.Chara;
 import moe.yuru.myserieslist.entities.Media;
 
@@ -55,6 +57,17 @@ public class CharactersService {
         chara.setNom(nom);
         em.persist(chara);
         return chara;
+    }
+
+    @GET
+    @Path("/{id}/link")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map<String, Serializable> characterOnMediaId(@PathParam("id") int id) {
+        Map<String, Serializable> data = new HashMap<>();
+        ArrayList<Chara> characters = new ArrayList<>();
+        characters.addAll(em.createQuery("FROM Chara WHERE Chara.charamedia_id ="+id, Chara.class).getResultList());
+        data.put("person", characters);
+        return data; 
     }
 
 }
