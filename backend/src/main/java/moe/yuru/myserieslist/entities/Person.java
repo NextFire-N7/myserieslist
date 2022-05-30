@@ -65,8 +65,16 @@ public class Person implements Serializable {
         this.medias = medias;
     }
 
+    public void addMedia(Media media) {
+        this.medias.add(media);
+    }
+
     public void setRoles(Collection<Chara> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Chara role) {
+        this.roles.add(role);
     }
 
 }
