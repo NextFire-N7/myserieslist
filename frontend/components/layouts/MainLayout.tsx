@@ -50,6 +50,9 @@ function Navbar({ router }: { router: Router }) {
         <Link href="/franchise/add">
           <a className={aClassName("/franchise/add")}>Add Franchise</a>
         </Link>
+        <Link href="/character/add">
+          <a className={aClassName("/character/add")}>Add Character</a>
+        </Link>
       </ul>
       {auth ? (
         <ul className="mx-10 space-x-5 text-blue-700">

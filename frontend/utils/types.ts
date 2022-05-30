@@ -48,3 +48,7 @@ export interface Franchise {
   nom : string;
   coverUrl : string;
 }
+
+export interface Character {
+  nom: string
+}
