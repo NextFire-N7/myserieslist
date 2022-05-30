@@ -243,7 +243,7 @@ function AddActor({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mediaId: media.id,
-          personsId: e.target.elements.actorlink.value,
+          personsId: parseInt(e.target.elements.actorlink.value),
         }),
       });
       const data = await resp.json();
@@ -252,7 +252,7 @@ function AddActor({
       {
         persons?.map((personnage) => {
           if (
-            personnage.id == e.target.elements.actorlink.value &&
+            personnage.id == parseInt(e.target.elements.actorlink.value) &&
             personnage.type == PersonType.ACTEUR
           ) {
             setacteur(true);
@@ -273,8 +273,8 @@ function AddActor({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          personsId: e.target.elements.actorlink.value,
-          charaId: e.target.elements.persolink.value,
+          personsId: parseInt(e.target.elements.actorlink.value),
+          charaId: parseInt(e.target.elements.persolink.value),
         }),
       });
 

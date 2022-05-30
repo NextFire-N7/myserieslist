@@ -58,7 +58,7 @@ public class PersonService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Person personlinkMedia(Map<String, Serializable> data) {
-        Person person = em.find(Person.class, data.get("personId"));
+        Person person = em.find(Person.class, data.get("personsId"));
         Media media = em.find(Media.class, data.get("mediaId"));
         person.addMedia(media);
         return(person);
