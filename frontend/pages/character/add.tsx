@@ -15,12 +15,12 @@ const CharacterAdd: NextPage<{ medias: Media[] }> = ({ medias }) => {
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
-    const resp = await fetch("/api/characters", {
+    const resp = await fetch(`/api/characters/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nom: e.target.elements.nom.value,
-        mediachar: e.target.elements.mediaAlink.value,
+        mediaSend: parseInt(e.target.elements.mediaAlink.value),
       }),
     });
     const data = await resp.json();

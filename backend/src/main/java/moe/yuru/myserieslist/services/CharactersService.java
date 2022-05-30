@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -17,6 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import moe.yuru.myserieslist.entities.Chara;
+import moe.yuru.myserieslist.entities.Media;
 
 @Path("/characters")
 public class CharactersService {
@@ -45,9 +47,14 @@ public class CharactersService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Chara characterPost(Chara character) {
-        em.persist(character);
-        return character;
+    public Chara characterPost(Map<String, Serializable> data) {
+        Media media = em.find(Media.class, (int) data.get("mediaSend"));
+        String nom = (String) data.get("nom");
+        Chara chara = new Chara();
+        chara.setMedia(media);
+        chara.setNom(nom);
+        em.persist(chara);
+        return chara;
     }
 
 }
