@@ -35,8 +35,8 @@ public class Media implements Serializable {
     @ManyToOne
     private Franchises franchise;
 
-    @OneToMany(mappedBy = "mediachar")
-    private Collection<Character> characters;
+    @OneToMany(mappedBy = "charamedia")
+    private Collection<Chara> characters;
 
     public int getId() {
         return id;
@@ -65,7 +65,7 @@ public class Media implements Serializable {
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
     }
-    
+
     public Collection<Commentaire> getCommentaire() {
         return commentaires;
     }
@@ -77,5 +77,5 @@ public class Media implements Serializable {
     public void setFranchise(Franchises franchise) {
         this.franchise = franchise;
     }
-    
+
 }

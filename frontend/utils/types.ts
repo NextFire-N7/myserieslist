@@ -26,29 +26,29 @@ export interface AuthData {
 }
 
 export interface Commentaire {
-  titre : string;
-  detail : string;
-  note : number;
+  titre: string;
+  detail: string;
+  note: number;
 }
 
 export interface Person {
   lastName: string;
-  firstName : string;
-  photoUrl : string;
-  type : PersonType
+  firstName: string;
+  photoUrl: string;
+  type: PersonType;
 }
 
 export enum PersonType {
   ACTEUR,
   DOUBLEUR,
-  REALISATEUR
+  REALISATEUR,
 }
 
 export interface Franchise {
-  nom : string;
-  coverUrl : string;
+  nom: string;
+  coverUrl: string;
 }
 
-export interface Character {
-  nom: string
+export interface Chara {
+  nom: string;
 }

@@ -16,8 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import moe.yuru.myserieslist.entities.Character;
-
+import moe.yuru.myserieslist.entities.Chara;
 
 @Path("/characters")
 public class CharactersService {
@@ -29,8 +28,8 @@ public class CharactersService {
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, Serializable> CharactersGet() {
         Map<String, Serializable> data = new HashMap<>();
-        ArrayList<Character> characters = new ArrayList<>();
-        characters.addAll(em.createQuery("FROM Characters", Character.class).getResultList());
+        ArrayList<Chara> characters = new ArrayList<>();
+        characters.addAll(em.createQuery("FROM Chara", Chara.class).getResultList());
         data.put("person", characters);
         return data;
     }
@@ -38,15 +37,15 @@ public class CharactersService {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Character characterGetById(@PathParam("id") int id) {
-        return em.find(Character.class, id);
+    public Chara characterGetById(@PathParam("id") int id) {
+        return em.find(Chara.class, id);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Character characterPost(Character character) {
+    public Chara characterPost(Chara character) {
         em.persist(character);
         return character;
     }

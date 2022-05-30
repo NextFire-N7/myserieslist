@@ -23,7 +23,7 @@ public class Person implements Serializable {
     private Collection<Media> medias;
 
     @OneToMany
-    private Collection<Character> roles;
+    private Collection<Chara> roles;
 
     public String getPhotoUrl() {
         return photoUrl;
@@ -69,11 +69,11 @@ public class Person implements Serializable {
         this.medias = medias;
     }
 
-    public Collection<Character> getRoles() {
+    public Collection<Chara> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Character> roles) {
+    public void setRoles(Collection<Chara> roles) {
         this.roles = roles;
     }
 
