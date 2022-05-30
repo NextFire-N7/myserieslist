@@ -34,6 +34,7 @@ export interface Commentaire {
 }
 
 export interface Person {
+  id: number;
   lastName: string;
   firstName: string;
   photoUrl: string;

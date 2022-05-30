@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useSessionStorage } from "../../utils/hooks";
-import type { AuthData, Commentaire, Media } from "../../utils/types";
+import type { AuthData, Commentaire, Media, Person } from "../../utils/types";
 
 export default function MediaCard({ media }: { media: Media }) {
   const [auth, setAuth] = useSessionStorage<AuthData>("auth");
 
   const [showAddComment, setShowAddComment] = useState(false);
   const [showAddActor, setShowAddActor] = useState(false);
+  const [persons, setpersons] = useState<Person[] | null>(null);
 
   const addToList = useCallback(
     async (e) => {
@@ -36,6 +37,7 @@ export default function MediaCard({ media }: { media: Media }) {
         });
         const data = await resp.json();
         console.log(data);
+        setpersons(data);
       }
     },
     [showAddActor]
@@ -89,7 +91,7 @@ export default function MediaCard({ media }: { media: Media }) {
           <NewCommentaire media={media} setShowAddComment={setShowAddComment} />
         )}
         {auth && showAddActor && (
-          <AddActor media={media} setShowAddActor={setShowAddActor} />
+          <AddActor media={media} setShowAddActor={setShowAddActor} persons={persons} />
         )}
       </div>
     </div>
@@ -200,9 +202,11 @@ function NewCommentaire({
 function AddActor({
   media,
   setShowAddActor,
+  persons,
 }: {
   media: Media;
   setShowAddActor: React.Dispatch<React.SetStateAction<boolean>>;
+  persons : Person[] | null;
 }) {
   const handleLinkActor = useCallback(async (e) => {
     e.preventDefault();
@@ -211,8 +215,13 @@ function AddActor({
   return (
     <div className="mt-1000 flex justify-center items-center flex-col rounded-lg shadow-xl p-2">
       <form onSubmit={handleLinkActor} className="mx-2">
+        <label className="my auto">People to add</label>
         <select name="actorlink">
-          <option></option>
+          {persons?.map((personnage) => (
+            <option value={personnage.id} key={personnage.id}>
+              {personnage.firstName} {personnage.lastName}
+            </option>
+          ))}
         </select>
         <input type="submit" className="rounded-full bg-blue-400 px-3 m-2" />
       </form>
