@@ -8,17 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Franchises implements Serializable {
 
-    @Id @GeneratedValue
-    private int id;
+    private @Id @GeneratedValue int id;
 
     private String nom;
     private String coverUrl;
 
-    @OneToMany
+    @OneToMany(mappedBy = "franchise")
     private Collection<Media> medias;
 
     @OneToMany(mappedBy = "franchise")
@@ -52,6 +50,4 @@ public class Franchises implements Serializable {
         this.medias = medias;
     }
 
-    
-    
 }

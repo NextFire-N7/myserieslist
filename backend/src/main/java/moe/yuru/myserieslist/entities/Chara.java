@@ -8,15 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Character implements Serializable {
-    
-    @Id @GeneratedValue
-    private int id;
+public class Chara implements Serializable {
+
+    private @Id @GeneratedValue int id;
 
     private String nom;
 
     @ManyToOne
-    Media mediachar;
+    Media charamedia;
 
     public int getId() {
         return id;
@@ -31,11 +30,11 @@ public class Character implements Serializable {
     }
 
     public Media getMedia() {
-        return mediachar;
+        return charamedia;
     }
 
     public void setMedia(Media media) {
-        this.mediachar = media;
+        this.charamedia = media;
     }
 
 }
