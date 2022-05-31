@@ -1,14 +1,7 @@
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useSessionStorage } from "../../utils/hooks";
-import {
-  AuthData,
-  Chara,
-  Commentaire,
-  Media,
-  Person,
-  PersonType,
-} from "../../utils/types";
+import { AuthData, Chara, Media, Person, PersonType } from "../../utils/types";
 
 export default function MediaCard({ media }: { media: Media }) {
   const [auth, setAuth] = useSessionStorage<AuthData>("auth");
@@ -67,7 +60,7 @@ export default function MediaCard({ media }: { media: Media }) {
           <p className="text-blue-400">{media.type}</p>
 
           {auth && (
-            <div>
+            <div className="flex flex-col space-y-2 my-2">
               <button
                 onClick={addToList}
                 className="rounded-full bg-blue-400 px-2"
@@ -76,20 +69,18 @@ export default function MediaCard({ media }: { media: Media }) {
               </button>
               <button
                 onClick={() => setShowAddComment(!showAddComment)}
-                className="rounded-full bg-blue-400 px-2 m-1"
+                className="rounded-full bg-blue-400 px-2"
               >
                 Add Comment
               </button>
               <button
                 onClick={needActor}
-                className="rounded-full bg-blue-400 px-2 m-1"
+                className="rounded-full bg-blue-400 px-2"
               >
                 Add People
               </button>
             </div>
           )}
-
-          <Commentaires comms={media.commentaire} />
         </div>
       </div>
 
@@ -105,36 +96,6 @@ export default function MediaCard({ media }: { media: Media }) {
           />
         )}
       </div>
-    </div>
-  );
-}
-
-function Commentaires({ comms }: { comms: Commentaire[] }) {
-  return (
-    <div className="container mx-auto rounded-lg bg-indigo-200 overflow-y-scroll max-h-56">
-      <p className="text-blue-400 rounded-lg m-2 p-2 font-bold bg-indigo-100">
-        Commentaires :
-      </p>
-      {comms.map((comm) => (
-        <div
-          className="mt-1000 flex flex-col rounded-lg m-2 shadow-xl bg-blue-400"
-          key={comm.id}
-        >
-          <p className="justify">
-            <label className="text-indigo-100 underline m-2 font-semibold">
-              {comm.titre} :
-            </label>
-            <label className="text-indigo-100 text-center bg-right">
-              {comm.note}/5
-            </label>
-          </p>
-
-          <label className="rounded-lg p-2 bg-indigo-100">
-            <p className="text-stone-600">{comm.message}</p>
-            <p className="text-cyan-400">- {comm.auteur}</p>
-          </label>
-        </div>
-      ))}
     </div>
   );
 }
@@ -171,7 +132,7 @@ function NewCommentaire({
   );
 
   return (
-    <div className="mt-1000 flex justify-center items-center flex-col rounded-lg shadow-xl p-2">
+    <div className="mt-1000 flex justify-center items-center flex-col rounded-lg shadow-xl p-2 ">
       <form onSubmit={handleSubmitCom} className="mx-2">
         <h2 className="text-base mt-2 text-gray-600 font-semibold text-center mx-4">
           Post a comment on {media.nom}

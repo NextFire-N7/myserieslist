@@ -37,7 +37,7 @@ function Navbar({ router }: { router: Router }) {
       <Link href="/">
         <a className="mx-10 font-bold text-blue-700">MySeriesList</a>
       </Link>
-      <ul className="space-x-10 mx-auto">
+      <ul className="space-x-10 mx-auto flex overflow-x-scroll">
         <Link href="/">
           <a className={aClassName("/")}>Home</a>
         </Link>
