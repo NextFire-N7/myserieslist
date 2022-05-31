@@ -1,8 +1,7 @@
 package moe.yuru.myserieslist.services;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -16,7 +15,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
 import moe.yuru.myserieslist.entities.Chara;
 import moe.yuru.myserieslist.entities.Media;
 
@@ -28,12 +26,8 @@ public class CharactersService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> CharactersGet() {
-        Map<String, Serializable> data = new HashMap<>();
-        ArrayList<Chara> characters = new ArrayList<>();
-        characters.addAll(em.createQuery("FROM Chara", Chara.class).getResultList());
-        data.put("person", characters);
-        return data;
+    public List<Chara> CharactersGet() {
+        return em.createQuery("FROM Chara", Chara.class).getResultList();
     }
 
     @GET
@@ -60,12 +54,8 @@ public class CharactersService {
     @GET
     @Path("/{id}/link")
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> characterOnMediaId(@PathParam("id") int id) {
-        Map<String, Serializable> data = new HashMap<>();
-        ArrayList<Chara> characters = new ArrayList<>();
-        characters.addAll(em.createQuery("FROM Chara WHERE Chara.charamedia_id ="+id, Chara.class).getResultList());
-        data.put("chara", characters);
-        return data; 
+    public List<Chara> characterOnMediaId(@PathParam("id") int id) {
+        return em.createQuery("FROM Chara WHERE Chara.charamedia_id =" + id, Chara.class).getResultList();
     }
 
 }

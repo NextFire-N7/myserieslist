@@ -7,7 +7,7 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async () => {
   const resp = await fetch("http://localhost:3000/api/medias");
   const data = await resp.json();
-  return { props: data };
+  return { props: { medias: data } };
 };
 
 const CharacterAdd: NextPage<{ medias: Media[] }> = ({ medias }) => {
@@ -15,7 +15,7 @@ const CharacterAdd: NextPage<{ medias: Media[] }> = ({ medias }) => {
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
-    const resp = await fetch(`/api/characters/`, {
+    const resp = await fetch(`/api/characters`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

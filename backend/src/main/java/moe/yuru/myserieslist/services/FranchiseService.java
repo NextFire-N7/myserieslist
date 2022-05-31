@@ -1,9 +1,6 @@
 package moe.yuru.myserieslist.services;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +15,6 @@ import javax.ws.rs.core.MediaType;
 
 import moe.yuru.myserieslist.entities.Franchises;
 
-
 @Path("/franchises")
 public class FranchiseService {
 
@@ -27,12 +23,8 @@ public class FranchiseService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> FranchiseGet() {
-        Map<String, Serializable> data = new HashMap<>();
-        ArrayList<Franchises> franchises = new ArrayList<>();
-        franchises.addAll(em.createQuery("FROM Franchises", Franchises.class).getResultList());
-        data.put("person", franchises);
-        return data;
+    public List<Franchises> FranchiseGet() {
+        return em.createQuery("FROM Franchises", Franchises.class).getResultList();
     }
 
     @GET

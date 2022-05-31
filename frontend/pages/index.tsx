@@ -7,7 +7,7 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async () => {
   const resp = await fetch("http://localhost:3000/api/medias");
   const data = await resp.json();
-  return { props: data };
+  return { props: { medias: data } };
 };
 
 const Home: NextPage<{ medias: Media[] }> = ({ medias }) => {

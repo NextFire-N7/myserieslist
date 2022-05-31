@@ -1,10 +1,6 @@
 package moe.yuru.myserieslist.services;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,12 +24,8 @@ public class MediasService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> mediasGet() {
-        Map<String, Serializable> data = new HashMap<>();
-        ArrayList<Media> med = new ArrayList<>();
-        med.addAll(em.createQuery("FROM Media", Media.class).getResultList());
-        data.put("medias", med);
-        return data;
+    public List<Media> mediasGet() {
+        return em.createQuery("FROM Media", Media.class).getResultList();
     }
 
     @GET
@@ -47,8 +39,8 @@ public class MediasService {
     @Path("/{id}/persons")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Collection<Person> mediasGetPersons(@PathParam("id") int id) {
-        Collection<Person> persons = em
+    public List<Person> mediasGetPersons(@PathParam("id") int id) {
+        List<Person> persons = em
                 .createQuery("FROM Person p JOIN FETCH p.medias m WHERE m.id = :id", Person.class)
                 .setParameter("id", id)
                 .getResultList();

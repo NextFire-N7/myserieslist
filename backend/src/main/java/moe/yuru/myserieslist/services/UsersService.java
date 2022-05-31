@@ -86,13 +86,6 @@ public class UsersService {
         return dict;
     }
 
-    @GET
-    @Path("/{pseudo}/medias")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Collection<Media> userGetMedias(@PathParam("pseudo") String pseudo) {
-        return null;
-    }
-
     @POST
     @Path("/{pseudo}/medias")
     @Consumes(MediaType.APPLICATION_JSON)

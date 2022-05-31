@@ -1,13 +1,11 @@
 package moe.yuru.myserieslist.services;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,9 +15,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import moe.yuru.myserieslist.entities.Person;
 import moe.yuru.myserieslist.entities.Chara;
 import moe.yuru.myserieslist.entities.Media;
+import moe.yuru.myserieslist.entities.Person;
 
 @Path("/persons")
 public class PersonService {
@@ -29,12 +27,8 @@ public class PersonService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Serializable> personsGet() {
-        Map<String, Serializable> data = new HashMap<>();
-        ArrayList<Person> pers = new ArrayList<>();
-        pers.addAll(em.createQuery("FROM Person", Person.class).getResultList());
-        data.put("person", pers);
-        return data;
+    public List<Person> personsGet() {
+        return em.createQuery("FROM Person", Person.class).getResultList();
     }
 
     @GET
@@ -62,7 +56,7 @@ public class PersonService {
         Person person = em.find(Person.class, data.get("personsId"));
         Media media = em.find(Media.class, data.get("mediaId"));
         person.addMedia(media);
-        return(person);
+        return (person);
     }
 
     @POST
@@ -74,7 +68,7 @@ public class PersonService {
         Person person = em.find(Person.class, data.get("personsId"));
         Chara chara = em.find(Chara.class, data.get("charaId"));
         person.addRole(chara);
-        return(person);
+        return (person);
     }
 
 }

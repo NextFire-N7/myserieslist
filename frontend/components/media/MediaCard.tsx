@@ -37,7 +37,7 @@ export default function MediaCard({ media }: { media: Media }) {
         });
         const data = await resp.json();
         console.log(data);
-        setpersons(data.person);
+        setpersons(data);
       }
     },
     [showAddActor]
@@ -192,7 +192,7 @@ function AddActor({
       });
       const data = await resp.json();
       console.log(data);
-      setchar(data.chara);
+      setchar(data);
     },
     [media.id]
   );

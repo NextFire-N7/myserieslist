@@ -1,7 +1,7 @@
 package moe.yuru.myserieslist.services;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -21,22 +21,16 @@ import moe.yuru.myserieslist.entities.Commentaire;
 import moe.yuru.myserieslist.entities.Media;
 import moe.yuru.myserieslist.entities.User;
 
-
-
 @Path("/commentaires")
 public class CommentairesService {
-    
+
     @PersistenceContext
     private EntityManager em;
 
-    @GET 
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String,Serializable> commentairesGet() {
-        Map<String,Serializable> data = new HashMap<>();
-        ArrayList<Commentaire> comm = new ArrayList<>();
-        comm.addAll(em.createQuery("FROM Commentaires", Commentaire.class).getResultList());
-        data.put("commentaires", comm);
-        return data;
+    public List<Commentaire> commentairesGet() {
+        return em.createQuery("FROM Commentaires", Commentaire.class).getResultList();
     }
 
     @GET
@@ -45,7 +39,7 @@ public class CommentairesService {
     public Commentaire commentairesGetById(int id) {
         return em.find(Commentaire.class, id);
     }
-    
+
     @POST
     @Path("/{pseudo}/posted")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -70,5 +64,5 @@ public class CommentairesService {
         em.persist(commentaire);
         return commentaire;
     }
-    
+
 }
