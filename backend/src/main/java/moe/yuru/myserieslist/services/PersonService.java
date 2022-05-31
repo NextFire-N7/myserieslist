@@ -57,6 +57,7 @@ public class PersonService {
     @Path("/link")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Person personlinkMedia(Map<String, Serializable> data) {
         Person person = em.find(Person.class, data.get("personsId"));
         Media media = em.find(Media.class, data.get("mediaId"));
@@ -68,6 +69,7 @@ public class PersonService {
     @Path("/linkrole")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Person personlinkRole(Map<String, Serializable> data) {
         Person person = em.find(Person.class, data.get("personsId"));
         Chara chara = em.find(Chara.class, data.get("charaId"));
