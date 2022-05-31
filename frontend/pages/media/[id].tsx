@@ -1,6 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import MediaCard from "../../components/media/MediaCard";
-import type { Commentaire, Media } from "../../utils/types";
+import PersonGrid from "../../components/media/PersonGrid";
+import type { Commentaire, Media, Person } from "../../utils/types";
 
 export const getServerSideProps: GetServerSideProps<{ media: Media }> = async (
   context
@@ -10,14 +11,26 @@ export const getServerSideProps: GetServerSideProps<{ media: Media }> = async (
   );
   const data = await resp.json();
   console.log(data);
-  return { props: { media: data } };
+  const resp2 = await fetch(
+    `http://localhost:3000/api/medias/${context.params!.id}/persons`
+  );
+  const data2 = await resp2.json();
+  console.log(data2);
+  return { props: { media: data, persons: data2 } };
 };
 
-const MediaPage: NextPage<{ media: Media }> = ({ media }) => {
+const MediaPage: NextPage<{ media: Media; persons: Person[] }> = ({
+  media,
+  persons,
+}) => {
   return (
     <div className="grid md:grid-cols-2 md:grid-rows-2 gap-4">
       <MediaCard media={media} />
       <Commentaires comms={media.commentaire} />
+      <div className="col-span-2 space-y-2">
+        <h2 className="font-bold text-xl">Actors list</h2>
+        <PersonGrid persons={persons} />
+      </div>
     </div>
   );
 };

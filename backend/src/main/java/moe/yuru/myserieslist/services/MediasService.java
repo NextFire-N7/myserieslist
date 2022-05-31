@@ -2,6 +2,7 @@ package moe.yuru.myserieslist.services;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import moe.yuru.myserieslist.entities.Media;
+import moe.yuru.myserieslist.entities.Person;
 
 @Path("/medias")
 public class MediasService {
@@ -39,6 +41,18 @@ public class MediasService {
     @Produces(MediaType.APPLICATION_JSON)
     public Media mediasGetById(@PathParam("id") int id) {
         return em.find(Media.class, id);
+    }
+
+    @GET
+    @Path("/{id}/persons")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Collection<Person> mediasGetPersons(@PathParam("id") int id) {
+        Collection<Person> persons = em
+                .createQuery("FROM Person p JOIN FETCH p.medias m WHERE m.id = :id", Person.class)
+                .setParameter("id", id)
+                .getResultList();
+        return persons;
     }
 
     @POST
