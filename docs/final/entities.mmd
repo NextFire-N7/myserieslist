@@ -1,0 +1,32 @@
+classDiagram
+    class Achievement {
+    }
+    class Chara {
+    }
+    class Commentaire {
+    }
+    class Franchises {
+    }
+    class Media {
+    }
+    class Person {
+    }
+    class User {
+    }
+    Achievement "*" --> "1" Franchises : franchise
+    Achievement "*" --> "*" User : users
+    Chara "*" --> "1" Media : charamedia
+    Commentaire "*" --> "1" Media : media
+    Franchises "1" --> "*" Media : medias
+    Franchises "1" --> "*" Achievement : achievements
+    Media "*" --> "1" Media : parent
+    Media "1" --> "*" Media : submedias
+    Media "1" --> "*" Commentaire : commentaires
+    Media "*" --> "*" Person : personnes
+    Media "*" --> "1" Franchises : franchise
+    Media "1" --> "*" Chara : characters
+    Person "*" --> "*" Media : medias
+    Person "*" --> "*" Chara : roles
+    User "*" --> "*" Media : viewedMedias
+    User "1" --> "*" Commentaire : commentaires
+    User "*" --> "*" Achievement : achievements
