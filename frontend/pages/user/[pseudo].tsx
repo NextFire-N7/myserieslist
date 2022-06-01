@@ -2,9 +2,10 @@ import type { GetServerSideProps, NextPage } from "next";
 import MediaGrid from "../../components/media/MediaGrid";
 import type { User } from "../../utils/types";
 
-export const getServerSideProps: GetServerSideProps<{ user: User }> = async (
-  context
-) => {
+export const getServerSideProps: GetServerSideProps<
+  { user: User },
+  { pseudo: string }
+> = async (context) => {
   const resp = await fetch(
     `http://localhost:3000/api/users/${context.params!.pseudo}`
   );

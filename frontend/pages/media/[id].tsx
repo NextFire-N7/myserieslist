@@ -3,9 +3,10 @@ import MediaCard from "../../components/media/MediaCard";
 import PersonGrid from "../../components/media/PersonGrid";
 import type { Commentaire, Media, Person } from "../../utils/types";
 
-export const getServerSideProps: GetServerSideProps<{ media: Media }> = async (
-  context
-) => {
+export const getServerSideProps: GetServerSideProps<
+  { media: Media; persons: Person[] },
+  { id: string }
+> = async (context) => {
   const resp = await fetch(
     `http://localhost:3000/api/medias/${context.params!.id}`
   );
